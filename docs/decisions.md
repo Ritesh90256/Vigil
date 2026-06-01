@@ -1,4 +1,4 @@
-# Vigil — Architecture Decision Records
+# Vigil:Architecture Decision Records
 
 ## ADR-001: Programming Language
 
