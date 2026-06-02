@@ -1,0 +1,33 @@
+{
+    "trace_id": "trace_05",
+    "agent_goal": "Route a task to the appropriate specialist agent",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "input": "User requests market research report",
+        "output": "Task should be delegated to research specialist."
+      },
+      {
+        "step": 2,
+        "type": "agent_handoff",
+        "tool": "research_agent",
+        "input": "Collect market information",
+        "output": "Research summary completed"
+      },
+      {
+        "step": 3,
+        "type": "agent_handoff",
+        "tool": "writer_agent",
+        "input": "Convert research into report",
+        "output": "Draft report generated"
+      }
+    ],
+    "final_output": "Completed market research report.",
+    "failure_mode": "none"
+  }
+
+Explanation:
+A router agent delegates work to specialist agents that perform different parts of the task.
+
+  
