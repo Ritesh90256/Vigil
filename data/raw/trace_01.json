@@ -1,0 +1,33 @@
+{
+    "trace_id": "trace_01",
+    "source": "LangChain Tool Calling Blog",
+    "agent_goal": "Calculate 5 raised to the power 2.743",
+    "steps": [
+      {
+        "step": 1,
+        "type": "user_input",
+        "input": "What's 5 raised to the 2.743?"
+      },
+      {
+        "step": 2,
+        "type": "llm_call",
+        "output": "Use exponentiation tool"
+      },
+      {
+        "step": 3,
+        "type": "tool_call",
+        "tool": "exponentiate",
+        "args": {
+          "x": 5,
+          "y": 2.743
+        }
+      },
+      {
+        "step": 4,
+        "type": "tool_output",
+        "output": "computed power value"
+      }
+    ],
+    "final_output": "Answer returned to user",
+    "failure_mode": "none"
+  }
