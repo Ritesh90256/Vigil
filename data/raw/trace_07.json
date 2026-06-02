@@ -1,0 +1,26 @@
+{
+    "trace_id": "trace_07",
+    "source": "derived_web_search_agent",
+    "agent_goal": "Find and summarize the latest AI news",
+    "steps": [
+      {
+        "step": 1,
+        "type": "user_input",
+        "input": "What are the latest developments in AI this week?"
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "web_search",
+        "input": "latest AI news this week",
+        "output": "Retrieved 5 news articles"
+      },
+      {
+        "step": 3,
+        "type": "llm_call",
+        "output": "Summarize the retrieved articles"
+      }
+    ],
+    "final_output": "Summary of the latest AI developments",
+    "failure_mode": "none"
+  }

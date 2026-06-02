@@ -1,0 +1,27 @@
+{
+    "trace_id": "trace_09",
+    "source": "derived_calendar_agent",
+    "agent_goal": "Schedule a meeting",
+    "steps": [
+      {
+        "step": 1,
+        "type": "user_input",
+        "input": "Schedule a meeting with the design team tomorrow"
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "calendar_lookup",
+        "output": "Available slot found at 3 PM"
+      },
+      {
+        "step": 3,
+        "type": "tool_call",
+        "tool": "calendar_create_event",
+        "input": "Meeting with design team at 3 PM",
+        "output": "Event created successfully"
+      }
+    ],
+    "final_output": "Meeting scheduled for tomorrow at 3 PM",
+    "failure_mode": "none"
+  }
