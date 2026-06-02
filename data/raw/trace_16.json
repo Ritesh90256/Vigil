@@ -1,0 +1,19 @@
+{
+    "trace_id": "trace_16",
+    "source": "synthetic_intent_drift",
+    "agent_goal": "Book a hotel",
+    "steps": [
+      {
+        "step": 1,
+        "type": "user_input",
+        "input": "Book a hotel in Bangalore"
+      },
+      {
+        "step": 2,
+        "type": "llm_call",
+        "output": "Search tourist attractions instead"
+      }
+    ],
+    "final_output": "Returned attractions instead of hotel booking",
+    "failure_mode": "intent_drift"
+  }

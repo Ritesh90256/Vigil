@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_12",
+    "source": "synthetic_invalid_api_key",
+    "agent_goal": "Search the web",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "search_api",
+        "output": "403 Invalid API Key"
+      }
+    ],
+    "final_output": "Search failed",
+    "failure_mode": "tool_misuse"
+  }

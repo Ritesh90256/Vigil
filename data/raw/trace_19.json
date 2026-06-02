@@ -1,0 +1,20 @@
+{
+    "trace_id": "trace_19",
+    "source": "synthetic_missing_schema",
+    "agent_goal": "Generate SQL query",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "output": "Generate query without schema information"
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "sql_db_query",
+        "output": "Unknown table error"
+      }
+    ],
+    "final_output": "Query failed",
+    "failure_mode": "context_loss"
+  }
