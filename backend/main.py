@@ -1,7 +1,27 @@
 from fastapi import FastAPI
+from sqlalchemy import create_engine, text
 
-app = FastAPI(title="Vigil API", version="0.1.0")
+DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/Vigil"
+
+engine = create_engine(DATABASE_URL)
+app = FastAPI()
 
 @app.get("/")
-def root():
-    return {"message": "Vigil API is running"}
+def home():
+    return {"message": "Vigil backend running"}
+
+@app.post("/traces")
+def create_trace(trace: dict):
+    with engine.connect() as conn:
+        query = text("""
+            INSERT INTO traces (input, output, latency)
+            VALUES (:input, :output, :latency)
+        """)
+        conn.execute(query, {
+            "input": trace.get("input"),
+            "output": trace.get("output"),
+            "latency": trace.get("latency")
+        })
+        conn.commit()
+
+    return {"status": "stored"}
