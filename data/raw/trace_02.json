@@ -1,0 +1,41 @@
+{
+    "trace_id": "trace_02",
+    "agent_goal": "Answer a user's question using a SQL database",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "input": "How can I answer the user's database question?",
+        "output": "I should inspect the available tables first."
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "sql_db_list_tables",
+        "input": "List all database tables",
+        "output": "Customers, Orders, Products"
+      },
+      {
+        "step": 3,
+        "type": "tool_call",
+        "tool": "sql_db_schema",
+        "input": "Show schema for Orders table",
+        "output": "order_id, customer_id, amount, order_date"
+      },
+      {
+        "step": 4,
+        "type": "llm_call",
+        "input": "Determine which SQL query answers the user's question",
+        "output": "Generate SQL query using Orders table"
+      },
+      {
+        "step": 5,
+        "type": "tool_call",
+        "tool": "sql_db_query",
+        "input": "SELECT SUM(amount) FROM Orders",
+        "output": "125430"
+      }
+    ],
+    "final_output": "The total order amount is 125430",
+    "failure_mode": "none"
+  }

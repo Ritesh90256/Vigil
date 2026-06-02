@@ -1,0 +1,33 @@
+{
+    "trace_id": "trace_03",
+    "agent_goal": "Answer a database question while requiring human approval before executing SQL",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "input": "User asks a database question",
+        "output": "I need to generate a SQL query."
+      },
+      {
+        "step": 2,
+        "type": "llm_call",
+        "input": "Determine appropriate SQL query",
+        "output": "SELECT COUNT(*) FROM Orders"
+      },
+      {
+        "step": 3,
+        "type": "human_review",
+        "input": "Approve SQL query execution",
+        "output": "Approved"
+      },
+      {
+        "step": 4,
+        "type": "tool_call",
+        "tool": "sql_db_query",
+        "input": "SELECT COUNT(*) FROM Orders",
+        "output": "542"
+      }
+    ],
+    "final_output": "There are 542 orders in the database.",
+    "failure_mode": "none"
+  }
