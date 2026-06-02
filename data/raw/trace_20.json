@@ -1,0 +1,21 @@
+{
+    "trace_id": "trace_20",
+    "source": "synthetic_multi_agent_failure",
+    "agent_goal": "Produce a research report",
+    "steps": [
+      {
+        "step": 1,
+        "type": "agent_handoff",
+        "tool": "research_agent",
+        "output": "Research completed"
+      },
+      {
+        "step": 2,
+        "type": "agent_handoff",
+        "tool": "writer_agent",
+        "output": "Missing research context"
+      }
+    ],
+    "final_output": "Incomplete report generated",
+    "failure_mode": "context_loss"
+  }

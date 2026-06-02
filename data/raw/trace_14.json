@@ -1,0 +1,27 @@
+{
+    "trace_id": "trace_14",
+    "source": "synthetic_retry_loop",
+    "agent_goal": "Retrieve weather data",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "weather_api",
+        "output": "Timeout"
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "weather_api",
+        "output": "Timeout"
+      },
+      {
+        "step": 3,
+        "type": "tool_call",
+        "tool": "weather_api",
+        "output": "Timeout"
+      }
+    ],
+    "final_output": "No answer generated",
+    "failure_mode": "infinite_loop"
+  }

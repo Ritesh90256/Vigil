@@ -1,0 +1,20 @@
+{
+    "trace_id": "trace_15",
+    "source": "synthetic_context_loss",
+    "agent_goal": "Answer a question from company documents",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "retriever",
+        "output": "Retrieved unrelated documents"
+      },
+      {
+        "step": 2,
+        "type": "llm_call",
+        "output": "Generated answer using wrong context"
+      }
+    ],
+    "final_output": "Incorrect answer returned",
+    "failure_mode": "context_loss"
+  }

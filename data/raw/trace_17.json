@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_17",
+    "source": "synthetic_permission_failure",
+    "agent_goal": "Access private company files",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "file_access",
+        "output": "Permission Denied"
+      }
+    ],
+    "final_output": "Unable to access files",
+    "failure_mode": "tool_misuse"
+  }
