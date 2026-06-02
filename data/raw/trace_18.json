@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_18",
+    "source": "synthetic_database_timeout",
+    "agent_goal": "Retrieve customer records",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "sql_db_query",
+        "output": "Query Timeout"
+      }
+    ],
+    "final_output": "Database request failed",
+    "failure_mode": "tool_misuse"
+  }

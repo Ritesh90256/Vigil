@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_11",
+    "source": "synthetic_rate_limit_failure",
+    "agent_goal": "Summarize multiple documents",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "llm_api",
+        "output": "429 Rate Limit Exceeded"
+      }
+    ],
+    "final_output": "Task could not be completed",
+    "failure_mode": "tool_misuse"
+  }

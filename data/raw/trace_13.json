@@ -1,0 +1,20 @@
+{
+    "trace_id": "trace_13",
+    "source": "synthetic_hallucinated_tool",
+    "agent_goal": "Book a flight",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "output": "Use flight_booking_tool"
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "flight_booking_tool",
+        "output": "Tool not found"
+      }
+    ],
+    "final_output": "Booking failed",
+    "failure_mode": "hallucination"
+  }
