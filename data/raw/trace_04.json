@@ -1,0 +1,27 @@
+{
+    "trace_id": "trace_04",
+    "agent_goal": "Answer a question using retrieved documents",
+    "steps": [
+      {
+        "step": 1,
+        "type": "llm_call",
+        "input": "What information is needed to answer the question?",
+        "output": "Relevant documents must be retrieved first."
+      },
+      {
+        "step": 2,
+        "type": "tool_call",
+        "tool": "document_retriever",
+        "input": "Search knowledge base for relevant documents",
+        "output": "Retrieved 3 matching documents"
+      },
+      {
+        "step": 3,
+        "type": "llm_call",
+        "input": "Use retrieved documents as context",
+        "output": "Generate answer grounded in documents"
+      }
+    ],
+    "final_output": "Answer generated using retrieved context.",
+    "failure_mode": "none"
+  }
