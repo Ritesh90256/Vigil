@@ -25,3 +25,25 @@ def create_trace(trace: dict):
         conn.commit()
 
     return {"status": "stored"}
+
+@app.get("/traces")
+def get_all_traces():
+    with engine.connect() as conn:
+        result = conn.execute(text("SELECT * FROM traces"))
+        traces = result.fetchall()
+
+    return [dict(row._mapping) for row in traces]
+
+@app.get("/traces/{trace_id}")
+def get_trace_by_id(trace_id: int):
+    with engine.connect() as conn:
+        result = conn.execute(
+            text("SELECT * FROM traces WHERE id = :id"),
+            {"id": trace_id}
+        )
+        trace = result.fetchone()
+
+    if trace is None:
+        return {"error": "Trace not found"}
+
+    return dict(trace._mapping)
