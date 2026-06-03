@@ -33,11 +33,43 @@ def capture_llm_call(prompt: str, model: str = "gpt-4o-mini") -> dict:
     # Build the trace as structured JSON
     trace = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
+        "type": "llm_call",
         "model": model,
         "input_prompt": prompt,
         "output_text": output_text,
         "latency_ms": latency_ms,
         "token_count": token_count,
+        "failure_mode": None
+    }
+
+    # Print trace as formatted JSON
+    print(json.dumps(trace, indent=2))
+
+    return trace
+
+
+def capture_tool_call(tool_name: str, tool_input: dict, tool_output) -> dict:
+    """
+    Captures a tool call made by an agent.
+    """
+
+    # Record start time
+    start_time = time.time()
+
+    # Record end time
+    end_time = time.time()
+
+    # Calculate latency
+    latency_ms = round((end_time - start_time) * 1000, 2)
+
+    # Build the trace
+    trace = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "type": "tool_call",
+        "tool_name": tool_name,
+        "tool_input": tool_input,
+        "tool_output": str(tool_output),
+        "latency_ms": latency_ms,
         "failure_mode": None
     }
 
