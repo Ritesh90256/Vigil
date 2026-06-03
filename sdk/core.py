@@ -2,6 +2,19 @@ import time
 import json
 from datetime import datetime, timezone
 import openai
+import requests
+
+def send_trace_to_backend(trace: dict):
+    try:
+        url = "http://127.0.0.1:8000/traces"
+        response = requests.post(url, json={
+            "input": trace.get("input_prompt") or str(trace.get("tool_input")),
+            "output": trace.get("output_text") or str(trace.get("tool_output")),
+            "latency": int(trace.get("latency_ms", 0))
+        })
+        print("Sent to backend:", response.json())
+    except Exception as e:
+        print("Failed to send trace:", e)
 
 def capture_llm_call(prompt: str, model: str = "gpt-4o-mini") -> dict:
     """
@@ -44,6 +57,7 @@ def capture_llm_call(prompt: str, model: str = "gpt-4o-mini") -> dict:
 
     # Print trace as formatted JSON
     print(json.dumps(trace, indent=2))
+    send_trace_to_backend(trace)
 
     return trace
 
@@ -75,6 +89,7 @@ def capture_tool_call(tool_name: str, tool_input: dict, tool_output) -> dict:
 
     # Print trace as formatted JSON
     print(json.dumps(trace, indent=2))
+    send_trace_to_backend(trace)
 
     return trace
 
