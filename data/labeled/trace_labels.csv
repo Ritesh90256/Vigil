@@ -1,0 +1,36 @@
+trace_id,failure_mode,notes
+trace_01,none,Tool calling workflow completed successfully and returned the expected answer.
+trace_02,none,SQL agent generated a valid query and successfully answered the user request.
+trace_03,none,Human approval workflow executed correctly before running the query.
+trace_04,none,RAG workflow retrieved relevant context and generated a correct answer.
+trace_05,none,Multi-agent workflow completed successfully with correct task delegation.
+trace_06,tool_misuse,Agent generated an incorrect SQL query and had to recover from execution failure.
+trace_07,none,Web search agent successfully retrieved information and summarized results.
+trace_08,none,Code execution agent successfully executed code and returned the result.
+trace_09,none,Calendar scheduling workflow completed successfully.
+trace_10,none,Email assistant successfully drafted and sent the requested email.
+trace_11,tool_misuse,Agent exceeded API rate limits while attempting tool execution.
+trace_12,tool_misuse,Agent used an invalid API key causing authentication failure.
+trace_13,hallucination,Agent attempted to invoke a tool that does not exist.
+trace_14,infinite_loop,Agent repeatedly retried the same failing action without making progress.
+trace_15,context_overflow,Agent retrieved incorrect context and generated an answer from irrelevant information.
+trace_16,intent_drift,Agent deviated from the user's original objective and pursued a different task.
+trace_17,tool_misuse,Agent attempted to access a resource without the required permissions.
+trace_18,tool_misuse,Database operation failed because of a query timeout.
+trace_19,tool_misuse,Agent generated a query without understanding the schema and produced an invalid operation.
+trace_20,context_overflow,Information was lost during multi-agent handoff resulting in an incomplete final output.
+trace_21,intent_drift,Agent switched from flight booking workflow to hotel search workflow and never completed original task.
+trace_22,context_overflow,Important sales data was lost between retrieval and report generation.
+trace_23,infinite_loop,Planner repeatedly rewrote roadmap without reaching completion.
+trace_24,hallucination,Agent produced inconsistent tax calculations and returned unsupported value.
+trace_25,hallucination,Summary introduced unsupported accuracy claim not grounded in paper.
+trace_26,tool_misuse,Agent sent shipping notification instead of refund response.
+trace_27,retry_storm,Deployment API repeatedly retried after identical failures.
+trace_28,context_overflow,Stored competitor information was not available during report generation.
+trace_29,prompt_injection,Agent followed malicious webpage instructions instead of system objective.
+trace_30,intent_drift,Restaurant search task shifted into weather-related actions.
+trace_31,context_overflow,Audience profile was lost during multi-agent handoff.
+trace_32,tool_misuse,Currency conversion tool used instead of stock retrieval tool.
+trace_33,infinite_loop,Content generator repeatedly regenerated drafts without progressing.
+trace_34,prompt_injection,Hidden document instructions overrode user request.
+trace_35,hallucination,Conflicting revenue figures resulted in unsupported final claim.
