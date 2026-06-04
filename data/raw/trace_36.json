@@ -1,0 +1,21 @@
+{
+    "trace_id": "trace_36",
+    "source": "crewai_inspired",
+    "agent_goal": "Create a market analysis report",
+    "steps": [
+      {
+        "step": 1,
+        "type": "agent_handoff",
+        "tool": "research_agent",
+        "output": "Collected competitor data"
+      },
+      {
+        "step": 2,
+        "type": "agent_handoff",
+        "tool": "writer_agent",
+        "output": "Competitor data unavailable"
+      }
+    ],
+    "final_output": "Partial report generated",
+    "failure_mode": "context_loss"
+  }
