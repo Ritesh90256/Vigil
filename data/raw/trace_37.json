@@ -1,0 +1,29 @@
+{
+    "trace_id": "trace_37",
+    "source": "langgraph_inspired",
+    "agent_goal": "Plan a product launch",
+    "steps": [
+      {
+        "step": 1,
+        "type": "planner",
+        "output": "Draft roadmap"
+      },
+      {
+        "step": 2,
+        "type": "planner",
+        "output": "Revised roadmap"
+      },
+      {
+        "step": 3,
+        "type": "planner",
+        "output": "Revised roadmap"
+      },
+      {
+        "step": 4,
+        "type": "planner",
+        "output": "Revised roadmap"
+      }
+    ],
+    "final_output": "No final plan produced",
+    "failure_mode": "infinite_loop"
+  }

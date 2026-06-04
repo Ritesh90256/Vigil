@@ -1,0 +1,14 @@
+{
+    "trace_id": "trace_46",
+    "source": "langgraph_inspired",
+    "agent_goal": "Book a flight",
+    "steps": [
+      {
+        "step": 1,
+        "type": "router",
+        "output": "Sent task to hotel booking node"
+      }
+    ],
+    "final_output": "Hotel recommendations returned",
+    "failure_mode": "intent_drift"
+  }

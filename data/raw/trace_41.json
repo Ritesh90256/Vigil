@@ -1,0 +1,14 @@
+{
+    "trace_id": "trace_41",
+    "source": "research_agent_inspired",
+    "agent_goal": "Generate literature review",
+    "steps": [
+      {
+        "step": 1,
+        "type": "retrieval",
+        "output": "Found 5 papers"
+      }
+    ],
+    "final_output": "Cited paper that does not exist",
+    "failure_mode": "hallucination"
+  }

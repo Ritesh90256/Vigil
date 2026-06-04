@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_30",
+    "source": "openai_agents_sdk_inspired",
+    "agent_goal": "Find nearby restaurants",
+    "steps": [
+      {"step":1,"tool":"maps_api","output":"Location unavailable"},
+      {"step":2,"tool":"weather_api","output":"Sunny"},
+      {"step":3,"tool":"weather_api","output":"Sunny"}
+    ],
+    "final_output":"Weather information returned",
+    "failure_mode":"intent_drift"
+  }

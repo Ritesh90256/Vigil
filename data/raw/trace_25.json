@@ -1,0 +1,11 @@
+{
+    "trace_id": "trace_25",
+    "source": "langsmith_demo_inspired",
+    "agent_goal": "Summarize research paper",
+    "steps": [
+      {"step":1,"tool":"pdf_reader","output":"Paper loaded"},
+      {"step":2,"tool":"summarizer","output":"Paper claims 95% accuracy"}
+    ],
+    "final_output":"95% accuracy claimed",
+    "failure_mode":"hallucination"
+  }
