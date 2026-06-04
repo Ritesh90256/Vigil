@@ -1,0 +1,14 @@
+{
+    "trace_id": "trace_43",
+    "source": "long_context_inspired",
+    "agent_goal": "Answer customer question",
+    "steps": [
+      {
+        "step": 1,
+        "type": "retrieval",
+        "output": "Loaded customer history"
+      }
+    ],
+    "final_output": "Ignored recent customer complaint",
+    "failure_mode": "context_overflow"
+  }

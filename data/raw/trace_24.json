@@ -1,0 +1,11 @@
+{
+    "trace_id": "trace_24",
+    "source": "openai_agents_sdk_inspired",
+    "agent_goal": "Calculate tax liability",
+    "steps": [
+      {"step":1,"tool":"calculator","output":"Tax = ₹18,000"},
+      {"step":2,"tool":"calculator","output":"Tax = ₹180,000"}
+    ],
+    "final_output":"Returned ₹180,000",
+    "failure_mode":"hallucination"
+  }

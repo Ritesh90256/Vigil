@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_35",
+    "source": "multi_agent_research_inspired",
+    "agent_goal": "Prepare investment memo",
+    "steps": [
+      {"step":1,"tool":"research_agent","output":"Company revenue = $20M"},
+      {"step":2,"tool":"finance_agent","output":"Revenue = $200M"},
+      {"step":3,"tool":"writer_agent","output":"Memo uses $200M"}
+    ],
+    "final_output":"Investment memo contains incorrect revenue",
+    "failure_mode":"hallucination"
+  }

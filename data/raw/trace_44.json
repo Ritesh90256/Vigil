@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_44",
+    "source": "crewai_inspired",
+    "agent_goal": "Access internal report",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "internal_db",
+        "output": "Permission denied"
+      }
+    ],
+    "final_output": "Report unavailable",
+    "failure_mode": "tool_misuse"
+  }

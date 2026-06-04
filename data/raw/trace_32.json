@@ -1,0 +1,11 @@
+{
+    "trace_id": "trace_32",
+    "source": "langchain_tool_calling_inspired",
+    "agent_goal": "Retrieve stock price",
+    "steps": [
+      {"step":1,"tool":"currency_converter","output":"USD-INR rate"},
+      {"step":2,"tool":"currency_converter","output":"USD-INR rate"}
+    ],
+    "final_output":"No stock price returned",
+    "failure_mode":"tool_misuse"
+  }

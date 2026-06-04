@@ -34,3 +34,18 @@ trace_32,tool_misuse,Currency conversion tool used instead of stock retrieval to
 trace_33,infinite_loop,Content generator repeatedly regenerated drafts without progressing.
 trace_34,prompt_injection,Hidden document instructions overrode user request.
 trace_35,hallucination,Conflicting revenue figures resulted in unsupported final claim.
+trace_36,context_overflow,Competitor data was lost during agent handoff causing an incomplete report.
+trace_37,infinite_loop,Planner repeatedly revised the roadmap without reaching a final plan.
+trace_38,intent_drift,Agent shifted from researching Tesla stock to writing about the EV industry.
+trace_39,prompt_injection,Documentation contained malicious instructions that overrode the intended task.
+trace_40,tool_misuse,Database query strategy retrieved incomplete sample data leading to an incorrect report.
+trace_41,hallucination,Agent cited a research paper that did not exist.
+trace_42,retry_storm,Weather API was repeatedly called despite receiving identical rate-limit errors.
+trace_43,context_overflow,Important customer history was lost due to context truncation.
+trace_44,tool_misuse,Agent attempted to access a restricted resource and failed to recover appropriately.
+trace_45,hallucination,Revenue figure was exaggerated beyond the retrieved source data.
+trace_46,intent_drift,Task routing sent a flight booking request to the wrong workflow.
+trace_47,prompt_injection,Web content instructed the model to ignore its original task.
+trace_48,context_overflow,Agent relied on outdated retrieved information and returned obsolete policy details.
+trace_49,infinite_loop,Agent repeatedly searched for competitors without progressing toward a result.
+trace_50,none,Agent successfully completed the calculation task using the correct tool.

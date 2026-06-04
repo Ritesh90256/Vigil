@@ -27,7 +27,3 @@
     "failure_mode": "none"
   }
 
-Explanation:
-A router agent delegates work to specialist agents that perform different parts of the task.
-
-  

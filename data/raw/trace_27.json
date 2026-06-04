@@ -1,0 +1,13 @@
+{
+    "trace_id": "trace_27",
+    "source": "autogpt_issue_inspired",
+    "agent_goal": "Deploy application",
+    "steps": [
+      {"step":1,"tool":"deployment_api","output":"503 error"},
+      {"step":2,"tool":"deployment_api","output":"503 error"},
+      {"step":3,"tool":"deployment_api","output":"503 error"},
+      {"step":4,"tool":"deployment_api","output":"503 error"}
+    ],
+    "final_output":"Deployment failed",
+    "failure_mode":"retry_storm"
+  }
