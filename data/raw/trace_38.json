@@ -1,0 +1,19 @@
+{
+    "trace_id": "trace_38",
+    "source": "autogpt_inspired",
+    "agent_goal": "Research Tesla stock",
+    "steps": [
+      {
+        "step": 1,
+        "type": "web_search",
+        "output": "Tesla quarterly earnings"
+      },
+      {
+        "step": 2,
+        "type": "web_search",
+        "output": "History of electric vehicles"
+      }
+    ],
+    "final_output": "Essay on EV industry",
+    "failure_mode": "intent_drift"
+  }

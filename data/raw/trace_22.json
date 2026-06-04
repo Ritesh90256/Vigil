@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_22",
+    "source": "langgraph_inspired",
+    "agent_goal": "Generate quarterly report",
+    "steps": [
+      {"step":1,"tool":"database_query","output":"Sales data retrieved"},
+      {"step":2,"tool":"report_writer","output":"Missing sales figures"},
+      {"step":3,"tool":"report_writer","output":"Generated incomplete report"}
+    ],
+    "final_output":"Report missing key metrics",
+    "failure_mode":"context_overflow"
+  }

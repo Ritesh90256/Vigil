@@ -1,0 +1,13 @@
+{
+    "trace_id": "trace_23",
+    "source": "autogpt_issue_inspired",
+    "agent_goal": "Create a project roadmap",
+    "steps": [
+      {"step":1,"tool":"web_search","output":"Roadmap examples"},
+      {"step":2,"tool":"planner","output":"Roadmap drafted"},
+      {"step":3,"tool":"planner","output":"Roadmap rewritten"},
+      {"step":4,"tool":"planner","output":"Roadmap rewritten again"}
+    ],
+    "final_output":"Never finalized roadmap",
+    "failure_mode":"infinite_loop"
+  }

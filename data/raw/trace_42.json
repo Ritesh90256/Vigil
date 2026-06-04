@@ -1,0 +1,13 @@
+{
+    "trace_id": "trace_42",
+    "source": "production_incident_inspired",
+    "agent_goal": "Call weather API",
+    "steps": [
+      {"step": 1, "type": "api_call", "output": "429"},
+      {"step": 2, "type": "api_call", "output": "429"},
+      {"step": 3, "type": "api_call", "output": "429"},
+      {"step": 4, "type": "api_call", "output": "429"}
+    ],
+    "final_output": "Request failed",
+    "failure_mode": "retry_storm"
+  }

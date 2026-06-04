@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_40",
+    "source": "langchain_sql_agent_inspired",
+    "agent_goal": "Find top customers",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "email_sender",
+        "output": "Email sent"
+      }
+    ],
+    "final_output": "Customer data not retrieved",
+    "failure_mode": "tool_misuse"
+  }
