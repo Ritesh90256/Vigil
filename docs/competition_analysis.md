@@ -1,5 +1,6 @@
 # Competition Analysis (view in preview not as markdown ---->>)
 
+
 | Company       | Category                   | Key Features                       | Target Users          | Pricing            | Gap                                       |
 | ------------- | -------------------------- | ---------------------------------- | --------------------- | ------------------ | ----------------------------------------- |
 | LangSmith     | Observability & Evaluation | Tracing, Monitoring, Evals         | AI Engineers          | Free + Usage-based | No automatic failure classification       |
@@ -8,7 +9,9 @@
 | Arize Phoenix | AI Observability           | Tracing, Retrieval Analysis, Evals | ML Teams, Enterprises | OSS + Enterprise   | Complex setup, limited categorization     |
 | Braintrust    | AI Evaluation              | Testing, Benchmarking, Evals       | AI Product Teams      | Usage-based        | Focused on evals, not production failures |
 
+
 ## Vigil Positioning
+
 
 | Attribute          | Vigil                                                                        |
 | ------------------ | ---------------------------------------------------------------------------- |
@@ -18,3 +21,5 @@
 | Differentiator     | Focuses on why failures occur, not just what happened                        |
 | Example Categories | Hallucination, Tool Failure, Retrieval Failure, Context Loss, Planning Error |
 | Outcome            | Faster debugging and root-cause analysis                                     |
+
+
