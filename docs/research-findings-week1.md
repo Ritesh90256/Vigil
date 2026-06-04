@@ -6,10 +6,10 @@ While collecting and labeling traces, we observed that many failures were caused
 
 Examples:
 
-* Wrong tool selected
-* Lost context between steps
-* Infinite retry loops
-* Incorrect task routing
+- Wrong tool selected
+- Lost context between steps
+- Infinite retry loops
+- Incorrect task routing
 
 ### Implication for Vigil
 
@@ -23,10 +23,10 @@ Single prompt → single answer systems are relatively easy to monitor.
 
 Failures increase when agents:
 
-* Use tools
-* Call APIs
-* Delegate tasks
-* Maintain memory
+- Use tools
+- Call APIs
+- Delegate tasks
+- Maintain memory
 
 ### Example
 
@@ -34,8 +34,8 @@ A research agent successfully retrieved information, but the writer agent never 
 
 Result:
 
-* Incorrect report
-* No obvious error message
+- Incorrect report
+- No obvious error message
 
 ### Implication for Vigil
 
@@ -47,10 +47,10 @@ Tracing agent steps is as important as tracing model outputs.
 
 While reviewing examples inspired by:
 
-* AutoGPT
-* LangChain
-* CrewAI
-* LangGraph
+- AutoGPT
+- LangChain
+- CrewAI
+- LangGraph
 
 we observed similar failures repeatedly.
 
@@ -104,8 +104,8 @@ Agents choose incorrect tools or lose context between steps.
 
 Failure Types:
 
-* Tool Misuse
-* Context Loss
+- Tool Misuse
+- Context Loss
 
 ---
 
@@ -119,9 +119,9 @@ These failures already exist in production systems and create business risk.
 
 Most teams can see:
 
-* Logs
-* API requests
-* Errors
+- Logs
+- API requests
+- Errors
 
 Very few can answer:
 
@@ -147,4 +147,3 @@ These findings validate Vigil's approach:
 2. Detect recurring failure patterns.
 3. Classify failures automatically.
 4. Help teams understand why an agent failed.
-
