@@ -1,0 +1,14 @@
+{
+    "trace_id": "trace_45",
+    "source": "financial_agent_inspired",
+    "agent_goal": "Summarize earnings",
+    "steps": [
+      {
+        "step": 1,
+        "type": "retrieval",
+        "output": "Revenue = $12M"
+      }
+    ],
+    "final_output": "Revenue reported as $120M",
+    "failure_mode": "hallucination"
+  }

@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_31",
+    "source": "crewai_inspired",
+    "agent_goal": "Create marketing campaign",
+    "steps": [
+      {"step":1,"tool":"research_agent","output":"Research completed"},
+      {"step":2,"tool":"writer_agent","output":"Campaign draft"},
+      {"step":3,"tool":"review_agent","output":"Missing audience profile"}
+    ],
+    "final_output":"Weak campaign delivered",
+    "failure_mode":"context_overflow"
+  }

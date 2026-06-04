@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_26",
+    "source": "crewai_inspired",
+    "agent_goal": "Generate customer support reply",
+    "steps": [
+      {"step":1,"tool":"email_reader","output":"Refund request"},
+      {"step":2,"tool":"knowledge_base","output":"Refund policy"},
+      {"step":3,"tool":"email_sender","output":"Order shipped notification"}
+    ],
+    "final_output":"Wrong customer response",
+    "failure_mode":"tool_misuse"
+  }

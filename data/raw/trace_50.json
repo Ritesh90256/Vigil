@@ -1,0 +1,15 @@
+{
+    "trace_id": "trace_50",
+    "source": "langchain_inspired",
+    "agent_goal": "Calculate tax",
+    "steps": [
+      {
+        "step": 1,
+        "type": "tool_call",
+        "tool": "calculator",
+        "output": "Tax = 1800"
+      }
+    ],
+    "final_output": "Tax is 1800",
+    "failure_mode": "none"
+  }

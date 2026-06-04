@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_28",
+    "source": "langgraph_inspired",
+    "agent_goal": "Research competitors",
+    "steps": [
+      {"step":1,"tool":"web_search","output":"Competitor list"},
+      {"step":2,"tool":"memory_store","output":"Stored"},
+      {"step":3,"tool":"report_writer","output":"No competitors found"}
+    ],
+    "final_output":"Empty competitor report",
+    "failure_mode":"context_overflow"
+  }

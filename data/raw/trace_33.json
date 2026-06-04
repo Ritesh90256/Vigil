@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_33",
+    "source": "autogpt_issue_inspired",
+    "agent_goal": "Write blog post",
+    "steps": [
+      {"step":1,"tool":"content_generator","output":"Draft created"},
+      {"step":2,"tool":"content_generator","output":"Draft regenerated"},
+      {"step":3,"tool":"content_generator","output":"Draft regenerated"}
+    ],
+    "final_output":"Never published post",
+    "failure_mode":"infinite_loop"
+  }

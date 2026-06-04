@@ -1,0 +1,19 @@
+{
+    "trace_id": "trace_48",
+    "source": "multi_agent_inspired",
+    "agent_goal": "Prepare sales report",
+    "steps": [
+      {
+        "step": 1,
+        "type": "agent_handoff",
+        "output": "Q4 revenue data gathered"
+      },
+      {
+        "step": 2,
+        "type": "agent_handoff",
+        "output": "Revenue data missing"
+      }
+    ],
+    "final_output": "Incomplete report",
+    "failure_mode": "context_loss"
+  }

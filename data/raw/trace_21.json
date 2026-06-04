@@ -1,0 +1,12 @@
+{
+    "trace_id": "trace_21",
+    "source": "crewai_inspired",
+    "agent_goal": "Book a flight",
+    "steps": [
+      {"step":1,"tool":"flight_search","output":"Available flights found"},
+      {"step":2,"tool":"hotel_search","output":"Hotels found"},
+      {"step":3,"tool":"hotel_search","output":"Hotels found again"}
+    ],
+    "final_output":"No flight booked",
+    "failure_mode":"intent_drift"
+  }
