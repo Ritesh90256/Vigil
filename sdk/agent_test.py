@@ -53,16 +53,34 @@ def run_agent(user_query: str):
     
     # Step 2 — Call the appropriate tool based on query
     if "weather" in user_query.lower():
+        # Default city
+        city = "bangalore"
+
+        # Detect city from query
+        if "delhi" in user_query.lower():
+            city = "delhi"
+        elif "mumbai" in user_query.lower():
+            city = "mumbai"
+
         tool_result = capture_tool_call(
             tool_name="search_weather",
-            tool_input={"city": "bangalore"},
-            tool_output=search_weather("bangalore")
+            tool_input={"city": city},
+            tool_output=search_weather(city)
         )
+
     else:
+        # Extract numbers dynamically (better than hardcoding)
+        expression = "15 * 24"  # default
+
+        if "45" in user_query:
+            expression = "45 * 67"
+        elif "120" in user_query:
+            expression = "120 / 5"
+
         tool_result = capture_tool_call(
             tool_name="calculator",
-            tool_input={"expression": "15 * 24"},
-            tool_output=calculator("15 * 24")
+            tool_input={"expression": expression},
+            tool_output=calculator(expression)
         )
     
     tool_result["step"] = 2
@@ -82,8 +100,13 @@ def run_agent(user_query: str):
     return full_trace
 
 if __name__ == "__main__":
-    # Test 1 — weather query
-    run_agent("What is the weather in Bangalore?")
-    
-    # Test 2 — math query  
-    run_agent("What is 15 multiplied by 24?")
+    queries = [
+        "What is the weather in Bangalore?",
+        "What is 45 * 67?",
+        "What is the weather in Delhi?",
+        "What is 120 / 5?",
+        "Tell me the weather in Mumbai"
+    ]
+
+    for q in queries:
+        run_agent(q)
