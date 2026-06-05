@@ -1,149 +1,118 @@
 # Research Findings – Week 1
 
-## 1. Most Agent Failures Are Not Model Failures
+## Dataset Summary
+- Total traces labeled: 50
+- Traces with no failure: 10
+- Traces with failures: 40
 
-While collecting and labeling traces, we observed that many failures were caused by workflow issues rather than poor model reasoning.
+### Failure Mode Distribution
 
+| Failure Mode     | Count | % of failures |
+|-----------------|-------|---------------|
+| Tool Misuse      | 11    | 27.5%         |
+| Context Overflow | 8     | 20%           |
+| Hallucination    | 7     | 17.5%         |
+| Intent Drift     | 6     | 15%           |
+| Infinite Loop    | 5     | 12.5%         |
+| Prompt Injection | 4     | 10%           |
+| Retry Storm      | 2     | 5%            |
+
+**Most common failure: Tool Misuse (27.5% of all failures)**
+**Second most common: Context Overflow (20%)**
+
+---
+
+## Key Finding 1 — Most Agent Failures Are Not Model Failures
+Failures were caused by workflow issues rather than poor model reasoning.
 Examples:
-
 - Wrong tool selected
 - Lost context between steps
 - Infinite retry loops
 - Incorrect task routing
 
-### Implication for Vigil
-
-Observability must capture the entire agent workflow, not just the final model response.
-
----
-
-## 2. Multi-Step Agents Fail More Often Than Single-Step Agents
-
-Single prompt → single answer systems are relatively easy to monitor.
-
-Failures increase when agents:
-
-- Use tools
-- Call APIs
-- Delegate tasks
-- Maintain memory
-
-### Example
-
-A research agent successfully retrieved information, but the writer agent never received the context.
-
-Result:
-
-- Incorrect report
-- No obvious error message
-
-### Implication for Vigil
-
-Tracing agent steps is as important as tracing model outputs.
+**Implication for Vigil:** Observability must capture the entire agent
+workflow, not just the final model response.
 
 ---
 
-## 3. Failure Modes Repeat Across Different Frameworks
+## Key Finding 2 — Multi-Step Agents Fail More Often
+Single prompt → single answer systems are easy to monitor.
+Failures increase when agents use tools, call APIs, delegate tasks,
+or maintain memory across steps.
 
-While reviewing examples inspired by:
+**Example:** A research agent retrieved information successfully but the
+writer agent never received the context — incorrect report, no error message.
 
-- AutoGPT
-- LangChain
-- CrewAI
-- LangGraph
-
-we observed similar failures repeatedly.
-
-Common patterns:
-
-| Failure          | Frequency |
-| ---------------- | --------- |
-| Tool Misuse      | High      |
-| Hallucination    | High      |
-| Context Loss     | High      |
-| Intent Drift     | Medium    |
-| Retry Storms     | Medium    |
-| Prompt Injection | Medium    |
-| Infinite Loops   | Medium    |
-
-### Implication
-
-A small failure taxonomy can explain a large percentage of agent failures.
+**Implication for Vigil:** Tracing individual steps is as important
+as tracing model outputs.
 
 ---
 
-## 4. Real Companies Face These Problems
+## Key Finding 3 — A Small Taxonomy Explains Most Failures
+7 failure modes cover 100% of the failures observed in 50 traces.
+Same patterns appeared across AutoGPT, LangChain, CrewAI, and LangGraph
+inspired traces — failure modes are framework-agnostic.
 
-### Air Canada
-
-Problem:
-Chatbot provided incorrect refund information.
-
-Result:
-Legal dispute.
-
-Failure Type:
-Hallucination.
+**Implication:** Vigil's 7-mode classifier can explain the majority
+of real-world agent failures without needing a custom taxonomy per team.
 
 ---
 
-### AutoGPT Users
+## Key Finding 4 — Real Companies Face These Problems
+- **Air Canada** — chatbot hallucinated refund policy, led to legal dispute
+- **AutoGPT users** — infinite loops in production, widely documented on GitHub
+- **Enterprise agent platforms** — tool misuse and context loss are the
+  top reported issues in LangSmith GitHub issues
 
-Problem:
-Agents repeatedly performed actions without progressing.
-
-Failure Type:
-Infinite Loop.
-
----
-
-### Enterprise Agent Platforms
-
-Problem:
-Agents choose incorrect tools or lose context between steps.
-
-Failure Types:
-
-- Tool Misuse
-- Context Loss
+**Implication:** These are not edge cases — they are production risks
+with real business consequences.
 
 ---
 
-### Implication
-
-These failures already exist in production systems and create business risk.
-
----
-
-## 5. Agent Observability Is Still Early
-
-Most teams can see:
-
-- Logs
-- API requests
-- Errors
-
+## Key Finding 5 — Agent Observability Is Still Early
+Most teams can see logs, API requests, and errors.
 Very few can answer:
+- Why did the agent fail?
+- Which step caused the failure?
+- How often does this failure happen?
 
-> Why did the agent fail?
-
-or
-
-> Which step caused the failure?
-
-### Implication
-
-Vigil's classifier can provide higher-level explanations instead of raw logs.
+**Implication:** Vigil's classifier provides higher-level explanations
+instead of raw logs — this is the gap no free tool currently fills.
 
 ---
 
-# Key Takeaway
+## Mentor Feedback — Week 1
+Our mentor advised us to take a step back from building and focus on
+understanding the market first. Key points:
 
-After analyzing 50 labeled traces, we found that a relatively small set of recurring failure modes explains most agent failures.
+- Building is the easy part — understanding who the customer is and
+  where the product fits in the market is harder and more important
+- We need to validate that the problem is real before optimizing the solution
+- Phase 1 is about discovery, not delivery
 
-These findings validate Vigil's approach:
+**Action taken:** We have begun structured market research following
+PVL's 8-step Problem Discovery framework — industry map, stakeholder
+analysis, competitor complaints, and customer definition documents
+are being built in parallel with the technical work.
 
-1. Capture complete execution traces.
-2. Detect recurring failure patterns.
-3. Classify failures automatically.
-4. Help teams understand why an agent failed.
+---
+
+## What We Still Don't Know
+- Who is our most specific target customer — solo developer, small
+  startup, or mid-size company?
+- What does a real startup's agent failure look like vs our synthetic traces?
+- Why don't teams just use LangSmith — what specifically makes them
+  stay or leave?
+- How much time do engineers actually spend debugging agent failures per week?
+
+These questions will be answered through direct startup conversations
+in Week 2.
+
+---
+
+## Key Takeaway
+50 labeled traces show that 7 failure modes explain 100% of agent
+failures observed. Tool misuse and context overflow are the most
+common. The market has logging tools — nobody has a free,
+open-source classifier that automatically tells you what failed and why.
+That is Vigil's gap.
