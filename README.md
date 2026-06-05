@@ -27,17 +27,20 @@ then automatically classifies what went wrong.
 ---
 
 ## Architecture
+
+```
 Agent Code
-↓
+    ↓
 Vigil SDK          ← captures LLM calls + tool calls
-↓
+    ↓
 FastAPI Backend    ← receives and stores traces
-↓
+    ↓
 PostgreSQL         ← trace storage
-↓
+    ↓
 Classifier         ← labels failure mode (Week 2)
-↓
+    ↓
 Dashboard          ← visualise traces and failures (Week 5)
+```
 
 ---
 
@@ -77,8 +80,10 @@ trace = capture_tool_call(
 ---
 
 ## Project Structure
+
+```
 vigil/
-├── sdk/              # Python SDK:captures agent traces
+├── sdk/              # Python SDK — captures agent traces
 ├── backend/          # FastAPI server + PostgreSQL storage
 ├── classifier/       # Failure detection engine (Week 2)
 ├── dashboard/        # Next.js trace viewer (Week 5)
@@ -87,6 +92,7 @@ vigil/
 │   └── labeled/      # Labeled dataset for classifier training
 ├── docs/             # Architecture, decisions, taxonomy
 └── tests/            # Test scripts
+```
 
 ---
 
