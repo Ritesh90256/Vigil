@@ -83,15 +83,16 @@ trace = capture_tool_call(
 
 ```
 vigil/
-├── sdk/              # Python SDK — captures agent traces
-├── backend/          # FastAPI server + PostgreSQL storage
-├── classifier/       # Failure detection engine (Week 2)
-├── dashboard/        # Next.js trace viewer (Week 5)
+├── sdk/               # Python SDK — captures agent traces
+├── backend/           # FastAPI server + PostgreSQL storage
+├── classifier/        # Failure detection engine (Week 2)
+├── dashboard/         # Next.js trace viewer (Week 5)
 ├── data/
-│   ├── raw/          # Collected agent traces
-│   └── labeled/      # Labeled dataset for classifier training
-├── docs/             # Architecture, decisions, taxonomy
-└── tests/            # Test scripts
+│   ├── raw/           # Collected agent traces
+│   └── labeled/       # Labeled dataset for classifier training
+├── docs/              # Architecture, decisions, taxonomy
+├── scripts/           # Utility scripts — CLI dashboard, DB tools
+└── tests/             # Test scripts
 ```
 
 ---
