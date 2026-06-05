@@ -1,23 +1,31 @@
 import sys
 import os
+import time
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from sdk.core import capture_llm_call, capture_tool_call
-import openai
 
-# --- Define simple tools ---
+
+# --- Tool definitions ---
 
 def calculator(expression: str) -> str:
-    """A simple calculator tool"""
+    """
+    Evaluates a mathematical expression and returns the result as a string.
+    Uses eval() which is safe here since we control the input.
+    """
     try:
         result = eval(expression)
         return str(result)
     except Exception as e:
         return f"Error: {str(e)}"
 
+
 def search_weather(city: str) -> str:
-    """A mock weather search tool"""
-    # Mock response — no real API needed
+    """
+    Mock weather tool — returns hardcoded weather data for known cities.
+    In production this would call a real weather API.
+    """
     weather_data = {
         "bangalore": "28°C, partly cloudy",
         "mumbai": "32°C, humid",
@@ -25,79 +33,91 @@ def search_weather(city: str) -> str:
     }
     return weather_data.get(city.lower(), "Weather data not found")
 
-# --- Run a multi-step agent ---
 
-def run_agent(user_query: str):
+# --- Agent ---
+
+def run_agent(user_query: str) -> dict:
     """
-    A simple agent that:
-    1. Receives a query
-    2. Decides which tool to use
-    3. Calls the tool
-    4. Returns final answer
+    A simple 3-step agent that demonstrates multi-step trace capture:
+    Step 1 — LLM decides which tool to use
+    Step 2 — Tool is called, latency measured externally and passed to SDK
+    Step 3 — LLM uses tool result to answer the user
     """
     print(f"\n{'='*50}")
     print(f"Agent starting for query: {user_query}")
     print(f"{'='*50}\n")
-    
+
     full_trace = {
         "agent_goal": user_query,
         "steps": []
     }
-    
+
     # Step 1 — LLM decides what to do
     step1 = capture_llm_call(
-        f"User asked: '{user_query}'. What tool should I use? Reply with just the tool name and input. Options: calculator(expression) or search_weather(city)"
+        f"User asked: '{user_query}'. What tool should I use? "
+        f"Reply with just the tool name and input. "
+        f"Options: calculator(expression) or search_weather(city)"
     )
     step1["step"] = 1
     full_trace["steps"].append(step1)
-    
-    # Step 2 — Call the appropriate tool based on query
-    if "weather" in user_query.lower():
-        # Default city
-        city = "bangalore"
 
-        # Detect city from query
+    # Step 2 — Call the appropriate tool
+    # Latency is measured here, outside capture_tool_call,
+    # because the tool executes outside the SDK
+    if "weather" in user_query.lower():
+        city = "bangalore"
         if "delhi" in user_query.lower():
             city = "delhi"
         elif "mumbai" in user_query.lower():
             city = "mumbai"
 
-        tool_result = capture_tool_call(
+        tool_start = time.time()
+        weather_result = search_weather(city)
+        tool_latency = round((time.time() - tool_start) * 1000, 2)
+
+        step2 = capture_tool_call(
             tool_name="search_weather",
             tool_input={"city": city},
-            tool_output=search_weather(city)
+            tool_output=weather_result,
+            latency_ms=tool_latency
         )
 
     else:
-        # Extract numbers dynamically (better than hardcoding)
-        expression = "15 * 24"  # default
-
+        # Default expression — can be extended to parse query dynamically
+        expression = "15 * 24"
         if "45" in user_query:
             expression = "45 * 67"
         elif "120" in user_query:
             expression = "120 / 5"
 
-        tool_result = capture_tool_call(
+        tool_start = time.time()
+        calc_result = calculator(expression)
+        tool_latency = round((time.time() - tool_start) * 1000, 2)
+
+        step2 = capture_tool_call(
             tool_name="calculator",
             tool_input={"expression": expression},
-            tool_output=calculator(expression)
+            tool_output=calc_result,
+            latency_ms=tool_latency
         )
-    
-    tool_result["step"] = 2
-    full_trace["steps"].append(tool_result)
-    
+
+    step2["step"] = 2
+    full_trace["steps"].append(step2)
+
     # Step 3 — LLM uses tool result to give final answer
     step3 = capture_llm_call(
-        f"Tool returned: {tool_result['tool_output']}. Now answer the user's question: '{user_query}'"
+        f"Tool returned: {step2['tool_output']}. "
+        f"Now answer the user's question: '{user_query}'"
     )
     step3["step"] = 3
     full_trace["steps"].append(step3)
-    
+
     print(f"\n{'='*50}")
     print("Full agent trace complete — 3 steps captured")
     print(f"{'='*50}\n")
-    
+
     return full_trace
+
 
 if __name__ == "__main__":
     queries = [
@@ -108,5 +128,5 @@ if __name__ == "__main__":
         "Tell me the weather in Mumbai"
     ]
 
-    for q in queries:
-        run_agent(q)
+    for query in queries:
+        run_agent(query)
