@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_66",
+"source": "synthetic_v2",
+"agent_goal": "Run database query",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "db_query", "output": "Syntax error"},
+{"step": 2, "type": "tool_call", "tool": "db_query", "output": "Syntax error"}
+],
+"final_output": "Query failed repeatedly",
+"failure_mode": "infinite_loop"
+}

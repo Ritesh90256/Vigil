@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_90",
+"source": "synthetic_v2",
+"agent_goal": "Process transaction",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Capture details", "output": "Details stored"},
+{"step": 2, "type": "llm_call", "input": "Continue process", "output": "Missing transaction details"}
+],
+"final_output": "Incomplete transaction",
+"failure_mode": "context_overflow"
+}

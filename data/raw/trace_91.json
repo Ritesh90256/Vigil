@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_91",
+"source": "synthetic_v2",
+"agent_goal": "Generate response",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "User provides constraints", "output": "Constraints noted"},
+{"step": 2, "type": "llm_call", "input": "Generate output", "output": "Constraints ignored"}
+],
+"final_output": "Invalid output",
+"failure_mode": "context_overflow"
+}

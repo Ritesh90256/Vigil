@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_93",
+"source": "synthetic_v2",
+"agent_goal": "Solve math problem",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Solve equation", "output": "Explained unrelated topic"}
+],
+"final_output": "Incorrect answer",
+"failure_mode": "intent_drift"
+}

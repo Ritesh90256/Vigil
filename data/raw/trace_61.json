@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_61",
+"source": "synthetic_v2",
+"agent_goal": "Answer multi-step query",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "User provides details", "output": "Stored context"},
+{"step": 2, "type": "llm_call", "input": "Continue task", "output": "Missing earlier details"}
+],
+"final_output": "Incomplete answer",
+"failure_mode": "context_overflow"
+}

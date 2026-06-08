@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_74",
+"source": "synthetic_v2",
+"agent_goal": "Process refund",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "payment_api", "output": "Invalid refund request"}
+],
+"final_output": "Refund failed",
+"failure_mode": "tool_misuse"
+}

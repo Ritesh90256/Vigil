@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_57",
+"source": "synthetic_v2",
+"agent_goal": "Call external API",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Determine API endpoint", "output": "Use /fake_endpoint"},
+{"step": 2, "type": "tool_call", "tool": "api_client", "output": "Endpoint not found"}
+],
+"final_output": "API call failed",
+"failure_mode": "hallucination"
+}
