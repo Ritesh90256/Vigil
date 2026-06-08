@@ -1,8 +1,9 @@
 import sys
 import os
 from sqlalchemy import create_engine, text
-
-DATABASE_URL = "postgresql://postgres:postgres@localhost:5432/Vigil"
+from dotenv import load_dotenv
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 
