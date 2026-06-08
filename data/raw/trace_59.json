@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_59",
+"source": "synthetic_v2",
+"agent_goal": "Send system alert",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "email_service", "output": "Email sent"}
+],
+"final_output": "Alert sent via wrong channel",
+"failure_mode": "tool_misuse"
+}

@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_67",
+"source": "synthetic_v2",
+"agent_goal": "Get weather info",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "weather_api", "output": "Sunny, 30°C"}
+],
+"final_output": "Weather retrieved",
+"failure_mode": "none"
+}

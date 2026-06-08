@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_75",
+"source": "synthetic_v2",
+"agent_goal": "Plan travel itinerary",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "User specifies budget", "output": "Budget noted"},
+{"step": 2, "type": "llm_call", "input": "Continue planning", "output": "Budget ignored"}
+],
+"final_output": "Plan exceeds budget",
+"failure_mode": "context_overflow"
+}

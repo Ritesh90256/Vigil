@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_79",
+"source": "synthetic_v2",
+"agent_goal": "Fetch API data",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "api_client", "output": "Error"},
+{"step": 2, "type": "tool_call", "tool": "api_client", "output": "Error"}
+],
+"final_output": "Repeated failure",
+"failure_mode": "infinite_loop"
+}

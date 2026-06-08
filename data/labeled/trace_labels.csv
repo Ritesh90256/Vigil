@@ -49,3 +49,53 @@ trace_47,prompt_injection,Web content instructed the model to ignore its origina
 trace_48,context_overflow,Agent relied on outdated retrieved information and returned obsolete policy details.
 trace_49,infinite_loop,Agent repeatedly searched for competitors without progressing toward a result.
 trace_50,none,Agent successfully completed the calculation task using the correct tool.
+trace_51,retry_storm,Payment gateway API repeatedly retried after consistent timeout errors without exponential backoff.
+trace_52,retry_storm,Agent retried file upload operation continuously despite receiving identical server rejection responses.
+trace_53,prompt_injection,Customer support chatbot followed hidden instructions in user input to reveal internal system prompts.
+trace_54,prompt_injection,Agent executed malicious instructions embedded in retrieved web content overriding its original task.
+trace_55,prompt_injection,User prompt included instructions to ignore safety constraints which the agent followed.
+trace_56,prompt_injection,Agent prioritized embedded instructions in a PDF document over the actual user request.
+trace_57,hallucination,Agent generated a nonexistent API endpoint and attempted to call it.
+trace_58,hallucination,Agent fabricated a citation for a research paper that was not retrieved.
+trace_59,tool_misuse,Agent used email tool instead of notification service for alert delivery.
+trace_60,tool_misuse,Agent passed incorrect parameters to payment API causing transaction failure.
+trace_61,context_overflow,Agent lost earlier conversation context leading to incomplete response.
+trace_62,context_overflow,Multi-step workflow dropped key user preferences during processing.
+trace_63,intent_drift,Agent shifted from booking cab to suggesting tourist places.
+trace_64,intent_drift,Task execution deviated from generating report to summarizing unrelated data.
+trace_65,infinite_loop,Agent repeatedly attempted to validate invalid input without correction.
+trace_66,infinite_loop,Workflow retried failed database query without modifying query logic.
+trace_67,none,Agent successfully retrieved and summarized weather information.
+trace_68,none,Agent completed stock price retrieval and returned correct value.
+trace_69,retry_storm,Agent repeatedly attempted login despite consistent authentication failure.
+trace_70,prompt_injection,Agent followed malicious instructions embedded in user-uploaded document.
+trace_71,hallucination,Agent generated a nonexistent database table and attempted to query it.
+trace_72,hallucination,Agent produced a fabricated statistic not present in retrieved data.
+trace_73,tool_misuse,Agent used translation tool instead of summarization tool for report generation.
+trace_74,tool_misuse,Agent attempted to call payment API for a refund operation incorrectly.
+trace_75,context_overflow,Agent lost user constraints during multi-step reasoning.
+trace_76,context_overflow,Agent forgot previously retrieved product details before generating response.
+trace_77,intent_drift,Agent shifted from booking tickets to suggesting entertainment options.
+trace_78,intent_drift,Agent deviated from answering question to generating unrelated explanation.
+trace_79,infinite_loop,Agent repeatedly retried failing API call without adjusting parameters.
+trace_80,infinite_loop,Agent kept regenerating the same response without progressing.
+trace_81,none,Agent successfully completed document summarization task.
+trace_82,none,Agent correctly retrieved and displayed calendar events.
+trace_83,retry_storm,Agent repeatedly attempted payment processing despite consistent failure responses.
+trace_84,prompt_injection,Agent followed hidden instructions embedded in website content.
+trace_85,tool_misuse,Agent used incorrect database schema while forming query leading to failure.
+trace_86,hallucination,Agent generated a fake error code explanation not present in system logs.
+trace_87,hallucination,Agent invented product features that were not part of the catalog.
+trace_88,tool_misuse,Agent used search tool instead of database query for retrieving structured data.
+trace_89,tool_misuse,Agent attempted to send notification using incorrect messaging service.
+trace_90,context_overflow,Agent lost key transaction details during multi-step processing.
+trace_91,context_overflow,Agent failed to retain earlier constraints while generating output.
+trace_92,intent_drift,Agent shifted from answering query to generating marketing content.
+trace_93,intent_drift,Agent deviated from solving math problem to explaining unrelated concept.
+trace_94,infinite_loop,Agent repeatedly attempted same failing operation without modification.
+trace_95,infinite_loop,Agent regenerated identical responses without making progress.
+trace_96,none,Agent successfully executed translation task.
+trace_97,none,Agent correctly retrieved user profile information.
+trace_98,retry_storm,Agent repeatedly attempted API call despite consistent service unavailability.
+trace_99,prompt_injection,Agent executed malicious instructions hidden in API response data.
+trace_100,tool_misuse,Agent incorrectly mapped user request to wrong database operation.
