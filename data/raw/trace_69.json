@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_69",
+"source": "synthetic_v2",
+"agent_goal": "User login",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "auth_service", "output": "Authentication failed"},
+{"step": 2, "type": "tool_call", "tool": "auth_service", "output": "Authentication failed"}
+],
+"final_output": "Login failed after retries",
+"failure_mode": "retry_storm"
+}

@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_71",
+"source": "synthetic_v2",
+"agent_goal": "Query database",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Identify table", "output": "Use table: users_data_v2"},
+{"step": 2, "type": "tool_call", "tool": "db_query", "output": "Table does not exist"}
+],
+"final_output": "Query failed",
+"failure_mode": "hallucination"
+}

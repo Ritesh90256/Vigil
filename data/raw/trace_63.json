@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_63",
+"source": "synthetic_v2",
+"agent_goal": "Book a cab",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Find cab options", "output": "Switching to tourism suggestions"}
+],
+"final_output": "Irrelevant recommendations",
+"failure_mode": "intent_drift"
+}

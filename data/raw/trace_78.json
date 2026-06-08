@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_78",
+"source": "synthetic_v2",
+"agent_goal": "Answer user query",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Explain concept", "output": "Provided unrelated explanation"}
+],
+"final_output": "Incorrect response",
+"failure_mode": "intent_drift"
+}

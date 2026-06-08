@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_98",
+"source": "synthetic_v2",
+"agent_goal": "Call external API",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "api_client", "output": "Service unavailable"},
+{"step": 2, "type": "tool_call", "tool": "api_client", "output": "Service unavailable"}
+],
+"final_output": "API failure after retries",
+"failure_mode": "retry_storm"
+}

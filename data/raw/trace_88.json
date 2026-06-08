@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_88",
+"source": "synthetic_v2",
+"agent_goal": "Fetch structured data",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "search_engine", "output": "Unstructured results returned"}
+],
+"final_output": "Incorrect data retrieval",
+"failure_mode": "tool_misuse"
+}

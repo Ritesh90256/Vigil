@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_94",
+"source": "synthetic_v2",
+"agent_goal": "Execute operation",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "api_client", "output": "Failure"},
+{"step": 2, "type": "tool_call", "tool": "api_client", "output": "Failure"}
+],
+"final_output": "Repeated failure",
+"failure_mode": "infinite_loop"
+}

@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_64",
+"source": "synthetic_v2",
+"agent_goal": "Generate business report",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Analyze data", "output": "Summarizing unrelated dataset"}
+],
+"final_output": "Wrong report",
+"failure_mode": "intent_drift"
+}

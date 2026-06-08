@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_96",
+"source": "synthetic_v2",
+"agent_goal": "Translate text",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "translator", "output": "Translation complete"}
+],
+"final_output": "Translated text",
+"failure_mode": "none"
+}

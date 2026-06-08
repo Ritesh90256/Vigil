@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_100",
+"source": "synthetic_v2",
+"agent_goal": "Execute database operation",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Generate query", "output": "Wrong query generated"},
+{"step": 2, "type": "tool_call", "tool": "db_query", "output": "Query failed"}
+],
+"final_output": "Database error",
+"failure_mode": "tool_misuse"
+}

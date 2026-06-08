@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_73",
+"source": "synthetic_v2",
+"agent_goal": "Summarize document",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "translator", "output": "Translated text"}
+],
+"final_output": "Incorrect output due to wrong tool",
+"failure_mode": "tool_misuse"
+}

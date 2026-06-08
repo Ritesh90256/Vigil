@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_68",
+"source": "synthetic_v2",
+"agent_goal": "Get stock price",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "stock_api", "output": "AAPL: 180 USD"}
+],
+"final_output": "Stock price returned",
+"failure_mode": "none"
+}

@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_86",
+"source": "synthetic_v2",
+"agent_goal": "Explain system error",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "log_reader", "output": "Error logs retrieved"},
+{"step": 2, "type": "llm_call", "input": "Explain error", "output": "Fake error explanation generated"}
+],
+"final_output": "Incorrect explanation",
+"failure_mode": "hallucination"
+}

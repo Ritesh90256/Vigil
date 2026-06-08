@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_97",
+"source": "synthetic_v2",
+"agent_goal": "Fetch user profile",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "user_db", "output": "Profile retrieved"}
+],
+"final_output": "Profile displayed",
+"failure_mode": "none"
+}

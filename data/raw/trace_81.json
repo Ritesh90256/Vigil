@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_81",
+"source": "synthetic_v2",
+"agent_goal": "Summarize document",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "summarizer", "output": "Summary generated"}
+],
+"final_output": "Successful summary",
+"failure_mode": "none"
+}

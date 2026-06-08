@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_65",
+"source": "synthetic_v2",
+"agent_goal": "Validate input",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "validator", "output": "Invalid input"},
+{"step": 2, "type": "tool_call", "tool": "validator", "output": "Invalid input"}
+],
+"final_output": "Stuck in validation",
+"failure_mode": "infinite_loop"
+}
