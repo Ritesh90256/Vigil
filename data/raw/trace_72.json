@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_72",
+"source": "synthetic_v2",
+"agent_goal": "Generate analytics report",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "data_fetch", "output": "Data retrieved"},
+{"step": 2, "type": "llm_call", "input": "Summarize data", "output": "Revenue increased by 200%"}
+],
+"final_output": "Report contains incorrect statistic",
+"failure_mode": "hallucination"
+}

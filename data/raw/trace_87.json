@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_87",
+"source": "synthetic_v2",
+"agent_goal": "Describe product",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "product_db", "output": "Product info retrieved"},
+{"step": 2, "type": "llm_call", "input": "Describe product", "output": "Added nonexistent features"}
+],
+"final_output": "Incorrect product description",
+"failure_mode": "hallucination"
+}

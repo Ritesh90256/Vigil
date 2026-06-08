@@ -1,0 +1,12 @@
+{
+  "trace_id": "trace_51",
+  "source": "synthetic_v2",
+  "agent_goal": "Process payment transaction",
+  "steps": [
+    {"step": 1, "type": "tool_call", "tool": "payment_api", "output": "Timeout error"},
+    {"step": 2, "type": "tool_call", "tool": "payment_api", "output": "Timeout error"},
+    {"step": 3, "type": "tool_call", "tool": "payment_api", "output": "Timeout error"}
+  ],
+  "final_output": "Transaction failed after repeated retries",
+  "failure_mode": "retry_storm"
+}

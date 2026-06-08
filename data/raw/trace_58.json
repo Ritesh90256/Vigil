@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_58",
+"source": "synthetic_v2",
+"agent_goal": "Generate research summary",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "paper_search", "output": "No results found"},
+{"step": 2, "type": "llm_call", "input": "Generate summary anyway", "output": "Cited fake paper"}
+],
+"final_output": "Summary with fake citation",
+"failure_mode": "hallucination"
+}

@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_62",
+"source": "synthetic_v2",
+"agent_goal": "Process user preferences",
+"steps": [
+{"step": 1, "type": "agent_handoff", "tool": "planner", "output": "Preferences captured"},
+{"step": 2, "type": "agent_handoff", "tool": "executor", "output": "Preferences missing"}
+],
+"final_output": "Incorrect result",
+"failure_mode": "context_overflow"
+}

@@ -1,0 +1,12 @@
+{
+"trace_id": "trace_52",
+"source": "synthetic_v2",
+"agent_goal": "Upload user file to cloud storage",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "file_uploader", "output": "Upload rejected: invalid format"},
+{"step": 2, "type": "tool_call", "tool": "file_uploader", "output": "Upload rejected: invalid format"},
+{"step": 3, "type": "tool_call", "tool": "file_uploader", "output": "Upload rejected: invalid format"}
+],
+"final_output": "File upload failed after repeated retries",
+"failure_mode": "retry_storm"
+}

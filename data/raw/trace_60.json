@@ -1,0 +1,10 @@
+{
+"trace_id": "trace_60",
+"source": "synthetic_v2",
+"agent_goal": "Process payment",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "payment_api", "output": "Invalid parameters error"}
+],
+"final_output": "Payment failed",
+"failure_mode": "tool_misuse"
+}

@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_95",
+"source": "synthetic_v2",
+"agent_goal": "Generate answer",
+"steps": [
+{"step": 1, "type": "llm_call", "input": "Generate response", "output": "Same response"},
+{"step": 2, "type": "llm_call", "input": "Generate response", "output": "Same response"}
+],
+"final_output": "No progress",
+"failure_mode": "infinite_loop"
+}

@@ -1,0 +1,11 @@
+{
+"trace_id": "trace_76",
+"source": "synthetic_v2",
+"agent_goal": "Recommend products",
+"steps": [
+{"step": 1, "type": "tool_call", "tool": "product_search", "output": "Products retrieved"},
+{"step": 2, "type": "llm_call", "input": "Generate recommendation", "output": "Missing product details"}
+],
+"final_output": "Incomplete recommendation",
+"failure_mode": "context_overflow"
+}
