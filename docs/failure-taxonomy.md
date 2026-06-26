@@ -1,7 +1,5 @@
 # AI Agent Failure Taxonomy
 
-Author: Samhith Gowda  
-Date: June 1, 2026
 
 ## Purpose
 

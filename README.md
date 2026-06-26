@@ -99,8 +99,7 @@ vigil/
 
 ## Team
 
-Ritesh, Sami M, Samhith R Gowda
-PESU Venture Labs : ABC 2026
+Ritesh
 
 ---
 
@@ -113,3 +112,8 @@ PESU Venture Labs : ABC 2026
 | Backend — FastAPI + PostgreSQL | ✅ Done |
 | Classifier | 🔄 Week 2 |
 | Dashboard | 🔄 Week 5 |
+
+## Note
+This project was originally developed with local PostgreSQL defaults 
+(postgres:postgres) for development purposes. Use your own credentials 
+via .env when running this project.
