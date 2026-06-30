@@ -117,3 +117,8 @@ Ritesh
 This project was originally developed with local PostgreSQL defaults 
 (postgres:postgres) for development purposes. Use your own credentials 
 via .env when running this project.
+
+## Project History
+This project began as a team effort during PESU Venture Labs ABC 2026 
+internship (Sami M, Samhith R Gowda, Ritesh Minchinal). Development 
+continues here as an independent personal project by Ritesh Minchinal.
