@@ -12,7 +12,7 @@ trace_10,none,Email assistant successfully drafted and sent the requested email.
 trace_11,tool_misuse,Agent exceeded API rate limits while attempting tool execution.
 trace_12,tool_misuse,Agent used an invalid API key causing authentication failure.
 trace_13,hallucination,Agent attempted to invoke a tool that does not exist.
-trace_14,infinite_loop,Agent repeatedly retried the same failing action without making progress.
+trace_14,retry_storm,Agent repeatedly retried the same failing action without making progress.
 trace_15,context_overflow,Agent retrieved incorrect context and generated an answer from irrelevant information.
 trace_16,intent_drift,Agent deviated from the user's original objective and pursued a different task.
 trace_17,tool_misuse,Agent attempted to access a resource without the required permissions.

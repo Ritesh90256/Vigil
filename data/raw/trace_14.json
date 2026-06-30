@@ -23,5 +23,5 @@
       }
     ],
     "final_output": "No answer generated",
-    "failure_mode": "infinite_loop"
+    "failure_mode": "retry_storm"
   }
