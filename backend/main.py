@@ -1,7 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from fastapi import FastAPI, logger
+from fastapi import FastAPI, logger, HTTPException
 from sqlalchemy import create_engine, text
 from classifier.core import classify_trace
 
@@ -20,15 +20,16 @@ def create_trace(trace: dict):
     # insert the trace
     with engine.connect() as conn:
         query = text("""
-                     INSERT INTO traces (trace_data, failure_mode, confidence, reasoning)
-                        VALUES (:trace_data, :failure_mode, :confidence, :reasoning)
+                     INSERT INTO traces (trace_data, failure_mode, confidence, reasoning, agent_goal)
+                        VALUES (:trace_data, :failure_mode, :confidence, :reasoning, :agent_goal)
                      RETURNING id
                         """)
         result = conn.execute(query, {
             "trace_data": json.dumps(trace),
             "failure_mode": trace.get("failure_mode"),
             "confidence": trace.get("confidence"),
-            "reasoning": trace.get("reasoning")
+            "reasoning": trace.get("reasoning"),
+            "agent_goal": trace.get("agent_goal")
         })
 
         #get inserted row's id
@@ -70,22 +71,43 @@ def create_trace(trace: dict):
 
 @app.get("/traces")
 def get_all_traces():
+    traces = []
     with engine.connect() as conn:
-        result = conn.execute(text("SELECT * FROM traces"))
-        traces = result.fetchall()
+        result = conn.execute(text("""
+                                   SELECT 
+                                    id, 
+                                    agent_goal,
+                                    failure_mode,
+                                    confidence 
+                                   FROM 
+                                    traces
+                                   """))
+        rows = result.fetchall()
+        for row in rows:
+            traces.append(dict(row._mapping))
+    return traces
 
-    return [dict(row._mapping) for row in traces]
 
 @app.get("/traces/{trace_id}")
 def get_trace_by_id(trace_id: int):
     with engine.connect() as conn:
-        result = conn.execute(
-            text("SELECT * FROM traces WHERE id = :id"),
-            {"id": trace_id}
-        )
-        trace = result.fetchone()
+        result = conn.execute(text("""
+                                   SELECT
+                                    id,
+                                    agent_goal,
+                                    failure_mode,
+                                    confidence,
+                                    reasoning,
+                                    trace_data
+                                   FROM
+                                    traces
+                                   WHERE 
+                                    id = :trace_id
+                                   """
+                                   ), {"trace_id": trace_id})
+        row = result.fetchone()
 
-    if trace is None:
-        return {"error": "Trace not found"}
-
-    return dict(trace._mapping)
+    if row is None:
+            raise HTTPException(status_code=404, detail="Trace not found")
+        
+    return dict(row._mapping)
