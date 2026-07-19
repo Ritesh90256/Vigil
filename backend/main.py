@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, logger, HTTPException
 from sqlalchemy import create_engine, text
 from classifier.core import classify_trace
+from models import FailureMode
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -111,3 +112,38 @@ def get_trace_by_id(trace_id: int):
             raise HTTPException(status_code=404, detail="Trace not found")
         
     return dict(row._mapping)
+
+@app.get("/stats")
+def get_stats():
+    with engine.connect() as conn:
+        result = conn.execute(text("""
+                                   SELECT COUNT(*) FROM traces
+                                   """))
+        total_traces = result.scalar()
+    
+        failure_mode = {}
+
+        for mode in FailureMode:
+            failure_mode[mode.value] = 0
+
+        failure_mode["unclassified"] = 0
+
+        result = conn.execute(text("""
+                                   SELECT failure_mode, COUNT(*) as count
+                                   FROM traces
+                                   GROUP BY failure_mode
+                                   """))
+        rows = result.fetchall()
+        for row in rows:
+            failure_mode = row._mapping["failure_mode"]
+            count = row._mapping["count"]
+            if failure_mode is None:
+                failure_mode["unclassified"] += count
+            else:
+                failure_mode[failure_mode]+=count
+
+    return{
+        "total_traces": total_traces,
+        "failure_mode": failure_mode
+    }
+
