@@ -12,9 +12,13 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 app = FastAPI()
 
+
+
 @app.get("/")
 def home():
     return {"message": "Vigil backend running"}
+
+
 
 @app.post("/traces")
 def create_trace(trace: dict):
@@ -70,27 +74,54 @@ def create_trace(trace: dict):
                 }
     
 
+    
+
 @app.get("/traces")
-def get_all_traces():
+def get_all_traces(
+    failure_mode: FailureMode | None = None,
+    confidence: str | None = None):
+
     traces = []
+
+    query = """
+            SELECT 
+            id, 
+            agent_goal,
+            failure_mode,
+            confidence,
+            reasoning,
+            trace_data
+            FROM 
+            traces
+            """
+
+    conditions = []
+    params = {}
+    if failure_mode:
+        conditions.append("failure_mode = :failure_mode")
+        params["failure_mode"] = failure_mode
+    
+    if confidence:
+        conditions.append("confidence = :confidence")
+        params["confidence"] = confidence
+    
+    if conditions:
+        query += " WHERE " + " AND ".join(conditions)
+    
     with engine.connect() as conn:
-        result = conn.execute(text("""
-                                   SELECT 
-                                    id, 
-                                    agent_goal,
-                                    failure_mode,
-                                    confidence 
-                                   FROM 
-                                    traces
-                                   """))
+        result = conn.execute(text(query), params)
         rows = result.fetchall()
         for row in rows:
             traces.append(dict(row._mapping))
+    
     return traces
 
 
+
+
 @app.get("/traces/{trace_id}")
-def get_trace_by_id(trace_id: int):
+def get_trace_by_id(trace_id: int
+):
     with engine.connect() as conn:
         result = conn.execute(text("""
                                    SELECT
@@ -112,6 +143,8 @@ def get_trace_by_id(trace_id: int):
             raise HTTPException(status_code=404, detail="Trace not found")
         
     return dict(row._mapping)
+
+
 
 @app.get("/stats")
 def get_stats():
