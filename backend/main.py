@@ -1,7 +1,7 @@
 import os
 import json
 from dotenv import load_dotenv
-from fastapi import FastAPI, logger, HTTPException
+from fastapi import FastAPI, logger, HTTPException, Query
 from sqlalchemy import create_engine, text
 from classifier.core import classify_trace
 from models import FailureMode
@@ -79,8 +79,12 @@ def create_trace(trace: dict):
 @app.get("/traces")
 def get_all_traces(
     failure_mode: FailureMode | None = None,
-    confidence: str | None = None):
+    confidence: str | None = None,
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100)
+    ):
 
+    offset = (page - 1) * limit
     traces = []
 
     query = """
@@ -107,7 +111,12 @@ def get_all_traces(
     
     if conditions:
         query += " WHERE " + " AND ".join(conditions)
-    
+
+    #pagination
+    query += " LIMIT :limit OFFSET :offset"
+    params["limit"] = limit
+    params["offset"] = offset
+
     with engine.connect() as conn:
         result = conn.execute(text(query), params)
         rows = result.fetchall()
