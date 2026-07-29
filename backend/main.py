@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, logger, HTTPException, Query
 from sqlalchemy import create_engine, text
 from classifier.core import classify_trace
-from models import FailureMode
+from .models import FailureMode
 
 load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
@@ -163,12 +163,12 @@ def get_stats():
                                    """))
         total_traces = result.scalar()
     
-        failure_mode = {}
+        failure_count = {}
 
         for mode in FailureMode:
-            failure_mode[mode.value] = 0
+            failure_count[mode.value] = 0
 
-        failure_mode["unclassified"] = 0
+        failure_count["unclassified"] = 0
 
         result = conn.execute(text("""
                                    SELECT failure_mode, COUNT(*) as count
@@ -180,12 +180,12 @@ def get_stats():
             failure_mode = row._mapping["failure_mode"]
             count = row._mapping["count"]
             if failure_mode is None:
-                failure_mode["unclassified"] += count
+                failure_count["unclassified"] += count
             else:
-                failure_mode[failure_mode]+=count
+                failure_count[failure_mode]+=count
 
     return{
         "total_traces": total_traces,
-        "failure_mode": failure_mode
+        "failure_count": failure_count
     }
 
