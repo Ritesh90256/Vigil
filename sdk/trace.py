@@ -1,6 +1,8 @@
 from typing import Optional
 import uuid
 from datetime import datetime, timezone
+import time
+import openai
 
 class Trace:
     """Represents one complete AI agent execution.
@@ -21,8 +23,34 @@ class Trace:
             "reasoning" : None
         }
     
-    def add_llm_step(self, input_prompt: Optional[str], output_text: str, latency_ms: float, token_count: int, model: str):
-        """Adds a step representing an LLM call to the trace."""
+    def add_llm_step(self, input_prompt: str, model: str = "gpt-4o-mini"):
+        """
+        Calls the LLM, captures the metadata, and records the step
+        in the trace.
+        """
+
+        # Start timing the LLM call
+        start_time = time.time()
+
+        # Make the OpenAI API call
+        response = openai.chat.completions.create(
+            model=model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": input_prompt
+                }
+            ]
+        )
+
+        # Measure latency
+        latency_ms = round((time.time() - start_time) * 1000, 2)
+
+        # Extract response information
+        output_text = response.choices[0].message.content
+        token_count = response.usage.total_tokens
+
+        # Add this LLM call as a step in the trace
         self.trace["steps"].append({
             "step": len(self.trace["steps"]) + 1,
             "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -33,6 +61,10 @@ class Trace:
             "latency_ms": latency_ms,
             "token_count": token_count,
         })
+
+        # Return the LLM's response so the agent can continue
+        return output_text
+    
     
     def add_tool_step(self, tool:str, tool_input:str, tool_output:str, latency_ms:float):
         """Adds a step representing a tool call to the trace."""
@@ -47,12 +79,14 @@ class Trace:
 
         })
 
+
     def finish(self, final_output:str, failure_mode:str=None, confidence:str=None, reasoning:str=None):
         self.trace["final_output"] = final_output
         self.trace["failure_mode"] = failure_mode
         self.trace["confidence"] = confidence
         self.trace["reasoning"] = reasoning
         return self.trace
+    
     
     def to_dict(self):
         return self.trace
