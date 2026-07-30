@@ -66,8 +66,11 @@ class Trace:
         return output_text
     
     
-    def add_tool_step(self, tool:str, tool_input:str, tool_output:str, latency_ms:float):
-        """Adds a step representing a tool call to the trace."""
+    def add_tool_step(self,tool:str,tool_function,tool_input: dict):
+        start_time = time.time()
+        tool_output = tool_function(tool_input)
+        latency_ms = round((time.time() - start_time)*1000, 2)
+        
         self.trace["steps"].append({
             "step": len(self.trace["steps"]) + 1,
             "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -78,6 +81,8 @@ class Trace:
             "latency_ms": latency_ms,
 
         })
+
+        return tool_output
 
 
     def finish(self, final_output:str, failure_mode:str=None, confidence:str=None, reasoning:str=None):

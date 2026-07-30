@@ -8,18 +8,31 @@ trace.add_llm_step(
     model="gpt-4o-mini"
 )
 
-trace.add_tool_step(
-    tool="weather_api",
-    tool_input={"location": "New York"},
-    tool_output={"temperature": "28°C"},
-    latency_ms=250
+def weather_api(tool_input):
+    return{
+        "temperature":"28°C"
+    }
+
+weather = trace.add_tool_step(
+    tool = "weather_api",
+    tool_function = weather_api,
+    tool_input = {"location": "New York"}
 )
 
-trace.add_llm_step(
-    input_prompt="Using the weather API result, answer the user's question.",
+final_answer = trace.add_llm_step(
+    input_prompt=f"""
+The user asked:
+What is the weather today?
+
+The weather API returned:
+
+{weather}
+
+Answer the user's question in one sentence.
+""",
     model="gpt-4o-mini"
 )
 
-trace.finish(final_output="Today's weather is 28°C")
+trace.finish(final_output = final_answer)
 
 send_trace_to_backend(trace)
