@@ -25,12 +25,47 @@ def build_prompt(trace):
         json.dumps(trace, indent=2)
     )
 
+def detect_infinite_loop(trace: dict):
+
+    steps = trace.get("steps",[])
+
+    previous_tool = None
+    previous_input = None
+    repeat_count = 1
+
+    for step in steps:
+
+        if step.get("type") != "tool_call":
+            continue
+        current_tool = step.get("tool_name")
+        current_input = step.get("tool_input")
+
+        if (
+            current_tool == previous_tool and 
+            current_input == previous_input
+            ):
+            repeat_count += 1
+        else:
+            repeat_count = 1
+
+        if repeat_count >=3:
+            return {
+                "failure_mode" : "infinite_loop",
+                "confidence" : "high",
+                "reasoning" : "Detected three consecutive identical tool calls with the same input."
+            }
+        previous_tool = current_tool
+        previous_input = current_input
+
+    return None
+
 
 def classify_trace(trace: dict, model: str = "gpt-4o-mini") -> dict:
-    """
-    Sends a trace to the LLM for classification using the prompt template.
-    Returns a dict with failure_mode, confidence, and reasoning.
-    """
+
+    heuristic_result = detect_infinite_loop(trace)
+    if heuristic_result:
+        return heuristic_result
+    
     prompt = build_prompt(trace)
 
     response = openai.chat.completions.create(
@@ -69,9 +104,27 @@ if __name__ == "__main__":
         "trace_id": "demo",
         "agent_goal": "Retrieve weather data",
         "steps": [
-            {"step": 1, "type": "tool_call", "tool": "weather_api", "output": "Timeout"},
-            {"step": 2, "type": "tool_call", "tool": "weather_api", "output": "Timeout"},
-            {"step": 3, "type": "tool_call", "tool": "weather_api", "output": "Timeout"}
+            {
+                "step": 1,
+                "type": "tool_call",
+                "tool_name": "weather_api",
+                "tool_input": {"location": "New York"},
+                "tool_output": {"temperature": "28°C"}
+            },
+            {
+                "step": 2,
+                "type": "tool_call",
+                "tool_name": "weather_api",
+                "tool_input": {"location": "New York"},
+                "tool_output": {"temperature": "28°C"}
+            },
+            {
+                "step": 3,
+                "type": "tool_call",
+                "tool_name": "weather_api",
+                "tool_input": {"location": "New York"},
+                "tool_output": {"temperature": "28°C"}
+            }
         ],
         "final_output": "No answer generated"
     }
