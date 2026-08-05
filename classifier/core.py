@@ -59,10 +59,74 @@ def detect_infinite_loop(trace: dict):
 
     return None
 
+def detect_retry_storm(trace: dict):
+    steps = trace.get("steps",[])
+    previous_tool = None
+    previous_input = None
+    repeat_count = 1
+
+    for step in steps:
+        if step.get("type") != "tool_call":
+            continue
+        current_tool = step.get("tool_name")
+        current_input= step.get("tool_input")
+        current_output = str(step.get("tool_output","")).lower()
+
+        failed = any(
+            keyword in current_output
+            for keyword in ["timeout", "error", "failed", "exception"]
+        )
+
+        if (
+            current_tool == previous_tool
+            and current_input == previous_input
+            and failed
+        ):
+            repeat_count += 1
+        else:
+            repeat_count = 1
+
+        if repeat_count >= 3:
+            return {
+                "failure_mode" : "retry_storm",
+                "confidence" : "high",
+                "reasoning" : "Detected three consecutive failed calls to the same tool with identical input."
+            }
+        previous_tool = current_tool
+        previous_input = current_input
+
+    return None
+
+def detect_tool_misuse(trace: dict):
+    steps = trace.get("steps",[])
+    for step in steps:
+        if step.get("type") != "tool_call":
+            continue
+
+        tool_input = step.get("tool_input")
+        if(
+            not isinstance(tool_input, dict)
+            or len(tool_input) == 0
+        ):
+            return {
+                "failure_mode" : "tool_misuse",
+                "confidence" : "high",
+                "reasoning" : "Detected a tool call with malformed or empty input."
+            }
+    return None
+
 
 def classify_trace(trace: dict, model: str = "gpt-4o-mini") -> dict:
 
+    heuristic_result = detect_retry_storm(trace)
+    if heuristic_result:
+        return heuristic_result
+
     heuristic_result = detect_infinite_loop(trace)
+    if heuristic_result:
+        return heuristic_result
+
+    heuristic_result = detect_tool_misuse(trace)
     if heuristic_result:
         return heuristic_result
     
@@ -109,21 +173,21 @@ if __name__ == "__main__":
                 "type": "tool_call",
                 "tool_name": "weather_api",
                 "tool_input": {"location": "New York"},
-                "tool_output": {"temperature": "28°C"}
+                "tool_output": "Timeout"
             },
             {
                 "step": 2,
                 "type": "tool_call",
                 "tool_name": "weather_api",
                 "tool_input": {"location": "New York"},
-                "tool_output": {"temperature": "28°C"}
+                "tool_output": "Timeout"
             },
             {
                 "step": 3,
                 "type": "tool_call",
                 "tool_name": "weather_api",
                 "tool_input": {"location": "New York"},
-                "tool_output": {"temperature": "28°C"}
+                "tool_output": "Timeout"
             }
         ],
         "final_output": "No answer generated"
