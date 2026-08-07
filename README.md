@@ -1,124 +1,125 @@
-# Vigil — AI Agent Observability
+# Vigil
 
-> Real-time failure detection for LLM-powered agents.
+Vigil is an observability platform for AI agents that automatically captures execution traces, stores them, and detects common failure modes using deterministic heuristics and LLM-based classification.
 
-Most companies deploying AI agents have no way to know when their agents are 
-hallucinating, misusing tools, or drifting from user intent, until a customer 
-complains. Existing tools log traces. None of them tell you what went wrong and why.
+## Features
 
-Vigil does.
+- SDK for one-line trace capture
+- FastAPI ingestion service
+- PostgreSQL trace storage
+- Failure-mode classification
+- Deterministic heuristics
+- Extensible architecture for additional detectors
 
----
+## Current Failure Modes
 
-## What it does
+Implemented heuristics:
 
-Vigil captures every LLM call, tool use, and reasoning step your agent makes, 
-then automatically classifies what went wrong.
+- Infinite Loop
+- Retry Storm
+- Tool Misuse
+- Context Overflow
+- Prompt Injection
 
-**7 failure modes detected:**
-- Hallucination
-- Tool misuse
-- Infinite loop
-- Prompt injection
-- Context overflow
-- Intent drift
-- Retry storm
+LLM fallback:
 
----
-
-## Architecture
-
-```
-Agent Code
-    ↓
-Vigil SDK          ← captures LLM calls + tool calls
-    ↓
-FastAPI Backend    ← receives and stores traces
-    ↓
-PostgreSQL         ← trace storage
-    ↓
-Classifier         ← labels failure mode (Week 2)
-    ↓
-Dashboard          ← visualise traces and failures (Week 5)
-```
-
----
-
-## Quick Start
-
-**1. Install dependencies**
-```bash
-pip install openai requests
-```
-
-**2. Set your OpenAI API key**
-```bash
-set OPENAI_API_KEY=your_key_here
-```
-
-**3. Start the backend**
-```bash
-uvicorn backend.main:app --reload
-```
-
-**4. Add to your agent**
-```python
-from sdk.core import capture_llm_call, capture_tool_call
-
-# Capture an LLM call
-trace = capture_llm_call("What is the capital of France?")
-
-# Capture a tool call
-trace = capture_tool_call(
-    tool_name="search_weather",
-    tool_input={"city": "bangalore"},
-    tool_output="28°C, partly cloudy",
-    latency_ms=12.5
-)
-```
-
----
+- GPT-4o-mini classifier for complex or unknown failures
 
 ## Project Structure
 
 ```
-vigil/
-├── sdk/               # Python SDK — captures agent traces
-├── backend/           # FastAPI server + PostgreSQL storage
-├── classifier/        # Failure detection engine (Week 2)
-├── dashboard/         # Next.js trace viewer (Week 5)
-├── data/
-│   ├── raw/           # Collected agent traces
-│   └── labeled/       # Labeled dataset for classifier training
-├── docs/              # Architecture, decisions, taxonomy
-├── scripts/           # Utility scripts — CLI dashboard, DB tools
-└── tests/             # Test scripts
+Vigil/
+│
+├── sdk/
+│
+├── backend/
+│
+├── classifier/
+│
+└── frontend/ (planned)
 ```
 
----
+## Tech Stack
 
-## Team
+- Python
+- FastAPI
+- PostgreSQL
+- OpenAI API
+- React (planned)
 
-Ritesh
+## Running the Project
 
----
+### Backend
 
-## Status
+```
+uvicorn backend.main:app --reload
+```
 
-| Component | Status |
-|---|---|
-| SDK — LLM call capture | ✅ Done |
-| SDK — Tool call capture | ✅ Done |
-| Backend — FastAPI + PostgreSQL | ✅ Done |
-| Classifier | 🔄 Week 2 |
-| Dashboard | 🔄 Week 5 |
+### SDK Test
 
-## Note
-This project was originally developed with local PostgreSQL defaults 
-(postgres:postgres) for development purposes. Use your own credentials 
-via .env when running this project.
+```
+python sdk/test_trace.py
+```
 
-## Project History
-This project began as a team effort during PESU Venture Labs ABC 2026 
-internship (Sami M, Samhith R Gowda, Ritesh Minchinal). Development 
-continues here as an independent personal project by Ritesh Minchinal.
+## Roadmap
+
+- React dashboard
+- Span visualization
+- Trace search
+- Additional failure heuristics
+- Metrics and analytics
+
+
+
+                     +----------------------+
+                     |      AI Agent        |
+                     +----------+-----------+
+                                |
+                                |
+                     One-line SDK Integration
+                                |
+                                v
+                     +----------------------+
+                     |     Vigil SDK        |
+                     |  Trace Collection    |
+                     +----------+-----------+
+                                |
+                                |
+                           HTTP POST
+                                |
+                                v
+                     +----------------------+
+                     |   FastAPI Backend    |
+                     |  /traces Endpoint    |
+                     +----------+-----------+
+                                |
+                                |
+                     Store Trace + Metadata
+                                |
+                                v
+                     +----------------------+
+                     |     PostgreSQL       |
+                     |      Traces DB       |
+                     +----------+-----------+
+                                |
+                                |
+                                v
+                     +----------------------+
+                     | Failure Classifier   |
+                     +----------+-----------+
+                                |
+            +-------------------+--------------------+
+            |                   |                    |
+            v                   v                    v
+     Retry Storm        Infinite Loop        Tool Misuse
+            |                   |                    |
+            +-------------------+--------------------+
+                                |
+                                v
+                      Context Overflow
+                                |
+                                v
+                     Prompt Injection
+                                |
+                                v
+                      LLM Fallback (GPT)
