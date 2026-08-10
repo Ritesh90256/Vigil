@@ -1,0 +1,701 @@
+trace_id,failure_mode,notes
+synthetic_18b95560,none,Normal agent execution completed successfully.
+synthetic_3a75520b,none,Normal agent execution completed successfully.
+synthetic_b1a622aa,none,Normal agent execution completed successfully.
+synthetic_4376e10f,none,Normal agent execution completed successfully.
+synthetic_216108a8,none,Normal agent execution completed successfully.
+synthetic_f39b6ce6,none,Normal agent execution completed successfully.
+synthetic_04bdfa3c,none,Normal agent execution completed successfully.
+synthetic_4fcecf0d,none,Normal agent execution completed successfully.
+synthetic_98f5be78,none,Normal agent execution completed successfully.
+synthetic_76cca212,none,Normal agent execution completed successfully.
+synthetic_a277e98d,none,Normal agent execution completed successfully.
+synthetic_9e7f934f,none,Normal agent execution completed successfully.
+synthetic_910a3be5,none,Normal agent execution completed successfully.
+synthetic_6bb334e2,none,Normal agent execution completed successfully.
+synthetic_7632ce13,none,Normal agent execution completed successfully.
+synthetic_28716136,none,Normal agent execution completed successfully.
+synthetic_9db6c7a1,none,Normal agent execution completed successfully.
+synthetic_18798feb,none,Normal agent execution completed successfully.
+synthetic_691090b0,none,Normal agent execution completed successfully.
+synthetic_faec7576,none,Normal agent execution completed successfully.
+synthetic_94f6cd74,none,Normal agent execution completed successfully.
+synthetic_6f79e245,none,Normal agent execution completed successfully.
+synthetic_8f4738ef,none,Normal agent execution completed successfully.
+synthetic_1d559a48,none,Normal agent execution completed successfully.
+synthetic_9e423ea3,none,Normal agent execution completed successfully.
+synthetic_89c4ef7e,none,Normal agent execution completed successfully.
+synthetic_bc6498f0,none,Normal agent execution completed successfully.
+synthetic_f5b1d2ec,none,Normal agent execution completed successfully.
+synthetic_d1e5e9c5,none,Normal agent execution completed successfully.
+synthetic_858140db,none,Normal agent execution completed successfully.
+synthetic_ee85b44c,none,Normal agent execution completed successfully.
+synthetic_91b6bf97,none,Normal agent execution completed successfully.
+synthetic_0bb062da,none,Normal agent execution completed successfully.
+synthetic_31b63ffd,none,Normal agent execution completed successfully.
+synthetic_13913f54,none,Normal agent execution completed successfully.
+synthetic_11d710d7,none,Normal agent execution completed successfully.
+synthetic_6e62c672,none,Normal agent execution completed successfully.
+synthetic_091920e5,none,Normal agent execution completed successfully.
+synthetic_3c3d0e11,none,Normal agent execution completed successfully.
+synthetic_cb38a3f9,none,Normal agent execution completed successfully.
+synthetic_94755ab3,none,Normal agent execution completed successfully.
+synthetic_e3d23d16,none,Normal agent execution completed successfully.
+synthetic_cdd347bf,none,Normal agent execution completed successfully.
+synthetic_6b23acf8,none,Normal agent execution completed successfully.
+synthetic_58df4278,none,Normal agent execution completed successfully.
+synthetic_0d52fe6f,none,Normal agent execution completed successfully.
+synthetic_6f5e502e,none,Normal agent execution completed successfully.
+synthetic_aa8fe2c8,none,Normal agent execution completed successfully.
+synthetic_98a9cdd0,none,Normal agent execution completed successfully.
+synthetic_99d45451,none,Normal agent execution completed successfully.
+synthetic_a7147356,none,Normal agent execution completed successfully.
+synthetic_faf85a7a,none,Normal agent execution completed successfully.
+synthetic_12f2a510,none,Normal agent execution completed successfully.
+synthetic_f3e63729,none,Normal agent execution completed successfully.
+synthetic_54c3c5c2,none,Normal agent execution completed successfully.
+synthetic_e4c1711e,none,Normal agent execution completed successfully.
+synthetic_49bc5c03,none,Normal agent execution completed successfully.
+synthetic_7cd5f5bb,none,Normal agent execution completed successfully.
+synthetic_73442ed3,none,Normal agent execution completed successfully.
+synthetic_90f380cc,none,Normal agent execution completed successfully.
+synthetic_1f0993f8,none,Normal agent execution completed successfully.
+synthetic_b557ffe1,none,Normal agent execution completed successfully.
+synthetic_f3d602ad,none,Normal agent execution completed successfully.
+synthetic_14cd8b97,none,Normal agent execution completed successfully.
+synthetic_242ebf7a,none,Normal agent execution completed successfully.
+synthetic_7830412e,none,Normal agent execution completed successfully.
+synthetic_3a39dab2,none,Normal agent execution completed successfully.
+synthetic_df5bd8ee,none,Normal agent execution completed successfully.
+synthetic_0cdab0c6,none,Normal agent execution completed successfully.
+synthetic_649aee62,none,Normal agent execution completed successfully.
+synthetic_a562c266,none,Normal agent execution completed successfully.
+synthetic_94497898,none,Normal agent execution completed successfully.
+synthetic_0dc16500,none,Normal agent execution completed successfully.
+synthetic_6c6d4d42,none,Normal agent execution completed successfully.
+synthetic_44820b21,none,Normal agent execution completed successfully.
+synthetic_960bc233,none,Normal agent execution completed successfully.
+synthetic_4268d178,none,Normal agent execution completed successfully.
+synthetic_b166cfc2,none,Normal agent execution completed successfully.
+synthetic_b0be9560,none,Normal agent execution completed successfully.
+synthetic_344958ea,none,Normal agent execution completed successfully.
+synthetic_154b3bdc,none,Normal agent execution completed successfully.
+synthetic_6238cc3e,none,Normal agent execution completed successfully.
+synthetic_75fe39b8,none,Normal agent execution completed successfully.
+synthetic_1fa2c7f5,none,Normal agent execution completed successfully.
+synthetic_2c81f0ac,none,Normal agent execution completed successfully.
+synthetic_b6119d8e,none,Normal agent execution completed successfully.
+synthetic_d7f8964b,none,Normal agent execution completed successfully.
+synthetic_f69558d7,none,Normal agent execution completed successfully.
+synthetic_36ea2bcc,none,Normal agent execution completed successfully.
+synthetic_f5e65fa0,none,Normal agent execution completed successfully.
+synthetic_b661764b,none,Normal agent execution completed successfully.
+synthetic_cc332f73,none,Normal agent execution completed successfully.
+synthetic_d77464c1,none,Normal agent execution completed successfully.
+synthetic_58819d4c,none,Normal agent execution completed successfully.
+synthetic_5cdd6ffc,none,Normal agent execution completed successfully.
+synthetic_6aaf6574,none,Normal agent execution completed successfully.
+synthetic_dbd62519,none,Normal agent execution completed successfully.
+synthetic_01e520fa,none,Normal agent execution completed successfully.
+synthetic_3c96dcce,none,Normal agent execution completed successfully.
+synthetic_8cbd505e,none,Normal agent execution completed successfully.
+synthetic_ff20645b,none,Normal agent execution completed successfully.
+synthetic_24987a62,none,Normal agent execution completed successfully.
+synthetic_5f22deaa,none,Normal agent execution completed successfully.
+synthetic_3b132140,none,Normal agent execution completed successfully.
+synthetic_a99afae5,none,Normal agent execution completed successfully.
+synthetic_935a1f01,none,Normal agent execution completed successfully.
+synthetic_3563820e,none,Normal agent execution completed successfully.
+synthetic_58214510,none,Normal agent execution completed successfully.
+synthetic_647c2f6e,none,Normal agent execution completed successfully.
+synthetic_7428303f,none,Normal agent execution completed successfully.
+synthetic_1f39f461,none,Normal agent execution completed successfully.
+synthetic_a2084f2d,none,Normal agent execution completed successfully.
+synthetic_b3fe412f,none,Normal agent execution completed successfully.
+synthetic_7c076dbd,none,Normal agent execution completed successfully.
+synthetic_35dab54e,none,Normal agent execution completed successfully.
+synthetic_71f83d2c,none,Normal agent execution completed successfully.
+synthetic_bdd5a6cf,none,Normal agent execution completed successfully.
+synthetic_f10aadcd,none,Normal agent execution completed successfully.
+synthetic_a2e7a965,none,Normal agent execution completed successfully.
+synthetic_17f72dae,none,Normal agent execution completed successfully.
+synthetic_296fc452,none,Normal agent execution completed successfully.
+synthetic_d9e51c41,none,Normal agent execution completed successfully.
+synthetic_ceda1231,none,Normal agent execution completed successfully.
+synthetic_8e9bcaaf,none,Normal agent execution completed successfully.
+synthetic_5e44cf8d,none,Normal agent execution completed successfully.
+synthetic_c2de7a69,none,Normal agent execution completed successfully.
+synthetic_b123114b,none,Normal agent execution completed successfully.
+synthetic_37a9172e,none,Normal agent execution completed successfully.
+synthetic_98ebb9d1,none,Normal agent execution completed successfully.
+synthetic_ef74f6eb,none,Normal agent execution completed successfully.
+synthetic_290738e9,none,Normal agent execution completed successfully.
+synthetic_6256a18f,none,Normal agent execution completed successfully.
+synthetic_5c596e68,none,Normal agent execution completed successfully.
+synthetic_792f3eaa,none,Normal agent execution completed successfully.
+synthetic_3e43267f,none,Normal agent execution completed successfully.
+synthetic_3b3edd4f,none,Normal agent execution completed successfully.
+synthetic_0f4ba063,none,Normal agent execution completed successfully.
+synthetic_9ab75d1e,none,Normal agent execution completed successfully.
+synthetic_fa2d1ae4,none,Normal agent execution completed successfully.
+synthetic_bf6531ce,none,Normal agent execution completed successfully.
+synthetic_1b60f62e,none,Normal agent execution completed successfully.
+synthetic_19897902,none,Normal agent execution completed successfully.
+synthetic_e194cbc6,none,Normal agent execution completed successfully.
+synthetic_a3ea2e3f,none,Normal agent execution completed successfully.
+synthetic_fe9bad23,none,Normal agent execution completed successfully.
+synthetic_b06ded32,none,Normal agent execution completed successfully.
+synthetic_b6cf8427,none,Normal agent execution completed successfully.
+synthetic_ad14a3b9,none,Normal agent execution completed successfully.
+synthetic_670f36ba,none,Normal agent execution completed successfully.
+synthetic_9d99d7c1,none,Normal agent execution completed successfully.
+synthetic_853acce4,none,Normal agent execution completed successfully.
+synthetic_381f4aa9,none,Normal agent execution completed successfully.
+synthetic_7daa1d53,none,Normal agent execution completed successfully.
+synthetic_e9601e61,none,Normal agent execution completed successfully.
+synthetic_e594e170,none,Normal agent execution completed successfully.
+synthetic_48825cba,none,Normal agent execution completed successfully.
+synthetic_727f6de8,none,Normal agent execution completed successfully.
+synthetic_aaf1b322,none,Normal agent execution completed successfully.
+synthetic_86c9fdd1,none,Normal agent execution completed successfully.
+synthetic_8ab99918,none,Normal agent execution completed successfully.
+synthetic_04f3d781,none,Normal agent execution completed successfully.
+synthetic_82f22cd2,none,Normal agent execution completed successfully.
+synthetic_a2bd786f,none,Normal agent execution completed successfully.
+synthetic_ca19f6d7,none,Normal agent execution completed successfully.
+synthetic_ab42eadc,none,Normal agent execution completed successfully.
+synthetic_db2745c2,none,Normal agent execution completed successfully.
+synthetic_530a43ea,none,Normal agent execution completed successfully.
+synthetic_ad452eff,none,Normal agent execution completed successfully.
+synthetic_bec770a5,none,Normal agent execution completed successfully.
+synthetic_d5a4719d,none,Normal agent execution completed successfully.
+synthetic_0579b03c,none,Normal agent execution completed successfully.
+synthetic_9178d6a3,none,Normal agent execution completed successfully.
+synthetic_11b25e27,none,Normal agent execution completed successfully.
+synthetic_64c58189,none,Normal agent execution completed successfully.
+synthetic_d6efcfca,none,Normal agent execution completed successfully.
+synthetic_f0d69362,none,Normal agent execution completed successfully.
+synthetic_89e71a08,none,Normal agent execution completed successfully.
+synthetic_7f5dfd01,none,Normal agent execution completed successfully.
+synthetic_8d1b4bf9,none,Normal agent execution completed successfully.
+synthetic_4072f473,none,Normal agent execution completed successfully.
+synthetic_1ff3f901,none,Normal agent execution completed successfully.
+synthetic_9376ae85,none,Normal agent execution completed successfully.
+synthetic_efa8b7a1,none,Normal agent execution completed successfully.
+synthetic_9c3375a4,none,Normal agent execution completed successfully.
+synthetic_4dcfda93,none,Normal agent execution completed successfully.
+synthetic_87d0b210,none,Normal agent execution completed successfully.
+synthetic_0b403147,none,Normal agent execution completed successfully.
+synthetic_8847e1c3,none,Normal agent execution completed successfully.
+synthetic_6792968f,none,Normal agent execution completed successfully.
+synthetic_dd6e61a1,none,Normal agent execution completed successfully.
+synthetic_ee678c7a,none,Normal agent execution completed successfully.
+synthetic_040bfe7f,none,Normal agent execution completed successfully.
+synthetic_206522e7,none,Normal agent execution completed successfully.
+synthetic_f93fa1db,none,Normal agent execution completed successfully.
+synthetic_208f9517,none,Normal agent execution completed successfully.
+synthetic_0dba9c34,none,Normal agent execution completed successfully.
+synthetic_71a24117,none,Normal agent execution completed successfully.
+synthetic_80613fee,none,Normal agent execution completed successfully.
+synthetic_8b743738,none,Normal agent execution completed successfully.
+synthetic_bff1faaf,none,Normal agent execution completed successfully.
+synthetic_3ea177b8,none,Normal agent execution completed successfully.
+synthetic_a6b50cef,none,Normal agent execution completed successfully.
+synthetic_07ea6955,none,Normal agent execution completed successfully.
+synthetic_bf815b5b,none,Normal agent execution completed successfully.
+synthetic_fc34492c,none,Normal agent execution completed successfully.
+synthetic_5f3b9487,none,Normal agent execution completed successfully.
+synthetic_e52c48fa,none,Normal agent execution completed successfully.
+synthetic_da2587d4,none,Normal agent execution completed successfully.
+synthetic_c3253c36,none,Normal agent execution completed successfully.
+synthetic_a3373c72,none,Normal agent execution completed successfully.
+synthetic_6a53b8bb,none,Normal agent execution completed successfully.
+synthetic_174126fa,none,Normal agent execution completed successfully.
+synthetic_6e40a505,none,Normal agent execution completed successfully.
+synthetic_99c4de80,none,Normal agent execution completed successfully.
+synthetic_4969f36b,none,Normal agent execution completed successfully.
+synthetic_2bfc0879,none,Normal agent execution completed successfully.
+synthetic_d27aaba3,none,Normal agent execution completed successfully.
+synthetic_77a5695f,none,Normal agent execution completed successfully.
+synthetic_5959bf9c,none,Normal agent execution completed successfully.
+synthetic_9c5969d1,none,Normal agent execution completed successfully.
+synthetic_f0b575ed,none,Normal agent execution completed successfully.
+synthetic_f803491a,none,Normal agent execution completed successfully.
+synthetic_729e7ab2,none,Normal agent execution completed successfully.
+synthetic_17322956,none,Normal agent execution completed successfully.
+synthetic_92a71b24,none,Normal agent execution completed successfully.
+synthetic_f3a1e779,none,Normal agent execution completed successfully.
+synthetic_f873361e,none,Normal agent execution completed successfully.
+synthetic_0d1730bc,none,Normal agent execution completed successfully.
+synthetic_3f58a6db,none,Normal agent execution completed successfully.
+synthetic_b5b602c1,none,Normal agent execution completed successfully.
+synthetic_21d2d203,none,Normal agent execution completed successfully.
+synthetic_bfa7a545,none,Normal agent execution completed successfully.
+synthetic_423b8d77,none,Normal agent execution completed successfully.
+synthetic_031865b4,none,Normal agent execution completed successfully.
+synthetic_5e2606aa,none,Normal agent execution completed successfully.
+synthetic_4861ab63,none,Normal agent execution completed successfully.
+synthetic_f9d9d0ae,none,Normal agent execution completed successfully.
+synthetic_0e52cf17,none,Normal agent execution completed successfully.
+synthetic_8cdafb34,none,Normal agent execution completed successfully.
+synthetic_51826d2e,none,Normal agent execution completed successfully.
+synthetic_e7427595,none,Normal agent execution completed successfully.
+synthetic_8879bd31,none,Normal agent execution completed successfully.
+synthetic_d7550e06,none,Normal agent execution completed successfully.
+synthetic_4e96f51a,none,Normal agent execution completed successfully.
+synthetic_62addf99,none,Normal agent execution completed successfully.
+synthetic_77d58afc,none,Normal agent execution completed successfully.
+synthetic_b4970574,none,Normal agent execution completed successfully.
+synthetic_73d50bde,none,Normal agent execution completed successfully.
+synthetic_21f9a8d2,none,Normal agent execution completed successfully.
+synthetic_6f89f141,none,Normal agent execution completed successfully.
+synthetic_6d5265e7,none,Normal agent execution completed successfully.
+synthetic_3844ffcc,none,Normal agent execution completed successfully.
+synthetic_031d5e96,none,Normal agent execution completed successfully.
+synthetic_f8c58982,none,Normal agent execution completed successfully.
+synthetic_40e5fa67,none,Normal agent execution completed successfully.
+synthetic_e992dd8e,none,Normal agent execution completed successfully.
+synthetic_09e9eca7,none,Normal agent execution completed successfully.
+synthetic_4bd828cf,none,Normal agent execution completed successfully.
+synthetic_0b885995,none,Normal agent execution completed successfully.
+synthetic_431fed7a,none,Normal agent execution completed successfully.
+synthetic_15be29b2,none,Normal agent execution completed successfully.
+synthetic_3eadf725,none,Normal agent execution completed successfully.
+synthetic_c7c97054,none,Normal agent execution completed successfully.
+synthetic_4acf8333,none,Normal agent execution completed successfully.
+synthetic_c072e5c2,none,Normal agent execution completed successfully.
+synthetic_026f79b4,none,Normal agent execution completed successfully.
+synthetic_24f33ed2,none,Normal agent execution completed successfully.
+synthetic_d64089df,none,Normal agent execution completed successfully.
+synthetic_52fdc06d,none,Normal agent execution completed successfully.
+synthetic_1bf39b99,none,Normal agent execution completed successfully.
+synthetic_095f4865,none,Normal agent execution completed successfully.
+synthetic_520dab5f,none,Normal agent execution completed successfully.
+synthetic_10b416fd,none,Normal agent execution completed successfully.
+synthetic_b85f36a9,none,Normal agent execution completed successfully.
+synthetic_6757efc5,none,Normal agent execution completed successfully.
+synthetic_f3932d73,none,Normal agent execution completed successfully.
+synthetic_d014514c,none,Normal agent execution completed successfully.
+synthetic_d3a72540,none,Normal agent execution completed successfully.
+synthetic_d809fc65,none,Normal agent execution completed successfully.
+synthetic_74c7115f,none,Normal agent execution completed successfully.
+synthetic_4c3ae72e,none,Normal agent execution completed successfully.
+synthetic_40d0d22b,none,Normal agent execution completed successfully.
+synthetic_96d306a9,none,Normal agent execution completed successfully.
+synthetic_0f6460a5,none,Normal agent execution completed successfully.
+synthetic_52e5b0aa,none,Normal agent execution completed successfully.
+synthetic_a37799fa,none,Normal agent execution completed successfully.
+synthetic_8d43e6b5,none,Normal agent execution completed successfully.
+synthetic_ad605340,none,Normal agent execution completed successfully.
+synthetic_e26fb204,none,Normal agent execution completed successfully.
+synthetic_ae0e4fe7,none,Normal agent execution completed successfully.
+synthetic_2f557821,none,Normal agent execution completed successfully.
+synthetic_53ca297a,none,Normal agent execution completed successfully.
+synthetic_e5d8583a,none,Normal agent execution completed successfully.
+synthetic_aab2c1a9,none,Normal agent execution completed successfully.
+synthetic_8c5b8996,none,Normal agent execution completed successfully.
+synthetic_8a0ae2a0,none,Normal agent execution completed successfully.
+synthetic_321f1101,none,Normal agent execution completed successfully.
+synthetic_f392512e,none,Normal agent execution completed successfully.
+synthetic_4ce91dad,none,Normal agent execution completed successfully.
+synthetic_cf941eac,none,Normal agent execution completed successfully.
+synthetic_b8523a0d,none,Normal agent execution completed successfully.
+synthetic_f46c1fb3,none,Normal agent execution completed successfully.
+synthetic_5a536c40,none,Normal agent execution completed successfully.
+synthetic_17350ba7,none,Normal agent execution completed successfully.
+synthetic_d3d90607,none,Normal agent execution completed successfully.
+synthetic_ac36b6a1,none,Normal agent execution completed successfully.
+synthetic_6aa2dd94,none,Normal agent execution completed successfully.
+synthetic_9691eff3,none,Normal agent execution completed successfully.
+synthetic_d609de8e,none,Normal agent execution completed successfully.
+synthetic_f3de8f58,none,Normal agent execution completed successfully.
+synthetic_2bc9bee7,none,Normal agent execution completed successfully.
+synthetic_226f994e,none,Normal agent execution completed successfully.
+synthetic_8a531f0e,none,Normal agent execution completed successfully.
+synthetic_6a26ebfe,none,Normal agent execution completed successfully.
+synthetic_305b7dcf,none,Normal agent execution completed successfully.
+synthetic_85407e0e,none,Normal agent execution completed successfully.
+synthetic_8a4f6e84,none,Normal agent execution completed successfully.
+synthetic_bf91f9ae,none,Normal agent execution completed successfully.
+synthetic_8c541b01,none,Normal agent execution completed successfully.
+synthetic_d93b476f,none,Normal agent execution completed successfully.
+synthetic_1e7b2132,none,Normal agent execution completed successfully.
+synthetic_058120bb,none,Normal agent execution completed successfully.
+synthetic_7c34e19b,none,Normal agent execution completed successfully.
+synthetic_61f61861,none,Normal agent execution completed successfully.
+synthetic_61c9ad96,none,Normal agent execution completed successfully.
+synthetic_972eb4e6,none,Normal agent execution completed successfully.
+synthetic_651f9264,none,Normal agent execution completed successfully.
+synthetic_858746f6,none,Normal agent execution completed successfully.
+synthetic_eed4204e,none,Normal agent execution completed successfully.
+synthetic_6a716f2f,none,Normal agent execution completed successfully.
+synthetic_99af2e87,none,Normal agent execution completed successfully.
+synthetic_9f862bce,none,Normal agent execution completed successfully.
+synthetic_ab48118d,none,Normal agent execution completed successfully.
+synthetic_439d3d3b,none,Normal agent execution completed successfully.
+synthetic_48d541d5,none,Normal agent execution completed successfully.
+synthetic_0ec13614,none,Normal agent execution completed successfully.
+synthetic_de334d32,none,Normal agent execution completed successfully.
+synthetic_7c9a2616,none,Normal agent execution completed successfully.
+synthetic_1b95c388,none,Normal agent execution completed successfully.
+synthetic_40a90b01,none,Normal agent execution completed successfully.
+synthetic_05dae5f8,none,Normal agent execution completed successfully.
+synthetic_0274bc01,none,Normal agent execution completed successfully.
+synthetic_15b9429d,none,Normal agent execution completed successfully.
+synthetic_9f8bb4d8,none,Normal agent execution completed successfully.
+synthetic_f383d3e3,none,Normal agent execution completed successfully.
+synthetic_464e81b0,none,Normal agent execution completed successfully.
+synthetic_ab339dba,none,Normal agent execution completed successfully.
+synthetic_9c41a69a,none,Normal agent execution completed successfully.
+synthetic_031b29e0,none,Normal agent execution completed successfully.
+synthetic_2cf541a6,none,Normal agent execution completed successfully.
+synthetic_ceb4562e,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_6aa5c164,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_9b05a681,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_60dacda1,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_f1060ec9,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_ad35a2a1,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_6680d1b6,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_f24a42ad,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_307e9589,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_f1b89cd1,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_ba82aeb6,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_32517eae,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_ee7d3cc2,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_4ef6c794,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_9e12527e,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_b54e093a,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_6eff5597,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_94b80bcb,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_4112e5d0,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_f1ae2cb2,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_8b55dd1c,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_e8c5201c,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_7ecb1ffa,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_9a945962,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_f243096c,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_b03bc7d8,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_a86fda8d,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_57be970d,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_5a55ee1b,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_1b1be439,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_4f4c0075,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_28ff4247,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_13101e90,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_9c8b005e,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_0d83f32b,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_a2ec2111,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_407e3854,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_fc889ada,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_71ef4492,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_5e5eb70a,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_c52be22e,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_993ea652,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_b8b2e251,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_9b5e9ed9,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_97d3509a,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_27224120,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_af8c5b26,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_2b012637,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_c8d60c12,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_7c8ca52d,infinite_loop,Agent repeatedly called the same tool with identical input.
+synthetic_18643c40,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_a1cb8688,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_6a2da16c,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_bc01a04a,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_28b23b2d,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_4e00e629,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_658f9d3b,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_dba54810,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_2ae258ff,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_3cd613e3,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_50c1b59e,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_14c6556d,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_1005c706,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_56658ddf,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_239dfa25,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_1eca24c6,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_1d6e7427,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_eb1e4b4e,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_3db90479,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_ce4c671f,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_dfb6e5f4,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_d95b5d6f,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_e5db57a4,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_3b2526c5,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_d2228886,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_e7e4f1dd,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_a9875164,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_fc69af0e,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_982b2679,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_7b1efcaa,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_c0dd97f0,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_634f197f,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_9d3ba1e4,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_005cb41d,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_16144c3b,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_e0cc3ed3,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_72db62cf,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_8d9a34c6,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_34b3ccee,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_0934978f,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_a8ef3a2f,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_dc72eee4,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_e139c59c,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_e95e5a3c,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_5ecf141d,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_9dc1a034,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_d5ba7565,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_efa676f2,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_ba3a270d,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_bd8bfda7,retry_storm,Agent repeatedly retried a failing tool call with identical input.
+synthetic_05abb024,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_4b47e68f,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_0af9a2dd,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_1017bab1,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_5b004c4a,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_0d3fbd13,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_939e1bce,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_aef5a598,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_aebb3757,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_df8c86c7,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_b3e5f717,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_bc3dd8b5,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_85bd366f,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_64517cac,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_f80f3c98,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_77848934,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_d9335bdc,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_bdec9010,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_f4a94d4b,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_fb1cd5c0,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_72c862dd,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_d379d6f6,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_b8a2dd06,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_84195952,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_25b7d522,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_ffa0ed32,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_da46ff7e,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_aa70f403,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_715bdcba,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_dc3bb66c,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_80ec7dd8,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_50508b30,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_92733237,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_104295f7,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_f9389e47,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_ac8be82f,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_45a518b8,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_83754efa,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_9a197ff0,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_6ebbd59d,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_b90515ab,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_a435183b,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_25d3f380,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_42caff69,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_b043f101,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_d52345ec,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_a25fdb16,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_78f5bf28,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_fe74ad83,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_6641b34e,tool_misuse,Agent called a tool with malformed or unexpected arguments.
+synthetic_48edac91,context_overflow,Trace exceeded the configured token threshold.
+synthetic_118bdbc7,context_overflow,Trace exceeded the configured token threshold.
+synthetic_b0ed4ecb,context_overflow,Trace exceeded the configured token threshold.
+synthetic_b0446d89,context_overflow,Trace exceeded the configured token threshold.
+synthetic_2bcc3f0a,context_overflow,Trace exceeded the configured token threshold.
+synthetic_c6feda7b,context_overflow,Trace exceeded the configured token threshold.
+synthetic_c1bb0cd6,context_overflow,Trace exceeded the configured token threshold.
+synthetic_6736214e,context_overflow,Trace exceeded the configured token threshold.
+synthetic_8b304cf3,context_overflow,Trace exceeded the configured token threshold.
+synthetic_6b5a842e,context_overflow,Trace exceeded the configured token threshold.
+synthetic_190e25b0,context_overflow,Trace exceeded the configured token threshold.
+synthetic_e445c39d,context_overflow,Trace exceeded the configured token threshold.
+synthetic_8b1dd1c2,context_overflow,Trace exceeded the configured token threshold.
+synthetic_815816a6,context_overflow,Trace exceeded the configured token threshold.
+synthetic_2c8d68ea,context_overflow,Trace exceeded the configured token threshold.
+synthetic_7e736bbf,context_overflow,Trace exceeded the configured token threshold.
+synthetic_512cbe7a,context_overflow,Trace exceeded the configured token threshold.
+synthetic_4af7f629,context_overflow,Trace exceeded the configured token threshold.
+synthetic_d6d3f025,context_overflow,Trace exceeded the configured token threshold.
+synthetic_0700c984,context_overflow,Trace exceeded the configured token threshold.
+synthetic_0f7a5201,context_overflow,Trace exceeded the configured token threshold.
+synthetic_18041a66,context_overflow,Trace exceeded the configured token threshold.
+synthetic_c2f4ce4f,context_overflow,Trace exceeded the configured token threshold.
+synthetic_7221a103,context_overflow,Trace exceeded the configured token threshold.
+synthetic_7b709e93,context_overflow,Trace exceeded the configured token threshold.
+synthetic_9d6d65a9,context_overflow,Trace exceeded the configured token threshold.
+synthetic_b58d2f72,context_overflow,Trace exceeded the configured token threshold.
+synthetic_2bf59a70,context_overflow,Trace exceeded the configured token threshold.
+synthetic_bdad1afa,context_overflow,Trace exceeded the configured token threshold.
+synthetic_1d700e3a,context_overflow,Trace exceeded the configured token threshold.
+synthetic_b4bd96e1,context_overflow,Trace exceeded the configured token threshold.
+synthetic_fb038e30,context_overflow,Trace exceeded the configured token threshold.
+synthetic_2084f7e4,context_overflow,Trace exceeded the configured token threshold.
+synthetic_0d30cee8,context_overflow,Trace exceeded the configured token threshold.
+synthetic_43565274,context_overflow,Trace exceeded the configured token threshold.
+synthetic_51b5967b,context_overflow,Trace exceeded the configured token threshold.
+synthetic_611e463b,context_overflow,Trace exceeded the configured token threshold.
+synthetic_1e5c75aa,context_overflow,Trace exceeded the configured token threshold.
+synthetic_292674b2,context_overflow,Trace exceeded the configured token threshold.
+synthetic_aa343b5d,context_overflow,Trace exceeded the configured token threshold.
+synthetic_a473bf01,context_overflow,Trace exceeded the configured token threshold.
+synthetic_0b2672cf,context_overflow,Trace exceeded the configured token threshold.
+synthetic_4d764290,context_overflow,Trace exceeded the configured token threshold.
+synthetic_6174fd76,context_overflow,Trace exceeded the configured token threshold.
+synthetic_c0c2bbe8,context_overflow,Trace exceeded the configured token threshold.
+synthetic_26dbb418,context_overflow,Trace exceeded the configured token threshold.
+synthetic_195f5b6a,context_overflow,Trace exceeded the configured token threshold.
+synthetic_a6cdf46b,context_overflow,Trace exceeded the configured token threshold.
+synthetic_0165f25a,context_overflow,Trace exceeded the configured token threshold.
+synthetic_3f7f1e1b,context_overflow,Trace exceeded the configured token threshold.
+synthetic_1dbed5fb,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_b37ecf77,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_af068163,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_f118c768,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_02deb6cc,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_ea9ef8c9,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_a5d271a9,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_b968f578,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_3b44504d,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_55ad6bd7,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_914a324a,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_8b5e72ac,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_ad43ffa7,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_e156ff12,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_73b07f17,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_a0db2ef4,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_8869cb0d,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_36351803,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_1ff51e63,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_6266eead,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_8a81389c,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_56b1af74,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_b990f0ef,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_3738538f,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_1f96e5bd,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_b1a05835,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_47c10ddb,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_72091f8a,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_e2ae3054,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_dc6e7deb,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_ab5d40a2,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_e67f574d,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_09c3b90c,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_81c8c03b,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_1bb49fac,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_4e755bf2,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_2df0d450,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_3d0ac853,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_d37fcb5b,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_b29ef415,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_6b2769c3,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_ca8b4ab1,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_0d545b12,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_af3a71d7,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_40ee1c48,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_bb827bdf,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_7d11e169,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_dad97b46,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_99ed3279,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_e7f57b27,prompt_injection,Tool output contained suspicious instruction-like text.
+synthetic_d460c25a,hallucination,Agent output contained unsupported information.
+synthetic_1ab00a9c,hallucination,Agent output contained unsupported information.
+synthetic_a69be6c2,hallucination,Agent output contained unsupported information.
+synthetic_c48ba3ee,hallucination,Agent output contained unsupported information.
+synthetic_d066ac18,hallucination,Agent output contained unsupported information.
+synthetic_caf4badf,hallucination,Agent output contained unsupported information.
+synthetic_535d4b4d,hallucination,Agent output contained unsupported information.
+synthetic_131d7d62,hallucination,Agent output contained unsupported information.
+synthetic_36da5e8e,hallucination,Agent output contained unsupported information.
+synthetic_03d56662,hallucination,Agent output contained unsupported information.
+synthetic_27cad05d,hallucination,Agent output contained unsupported information.
+synthetic_a6ed344d,hallucination,Agent output contained unsupported information.
+synthetic_48a9cffb,hallucination,Agent output contained unsupported information.
+synthetic_cd98e07a,hallucination,Agent output contained unsupported information.
+synthetic_e6bdc676,hallucination,Agent output contained unsupported information.
+synthetic_b67ef541,hallucination,Agent output contained unsupported information.
+synthetic_1554a63d,hallucination,Agent output contained unsupported information.
+synthetic_10c03675,hallucination,Agent output contained unsupported information.
+synthetic_111e5846,hallucination,Agent output contained unsupported information.
+synthetic_0772c947,hallucination,Agent output contained unsupported information.
+synthetic_db606cd6,hallucination,Agent output contained unsupported information.
+synthetic_5ac7b147,hallucination,Agent output contained unsupported information.
+synthetic_15f1f0fb,hallucination,Agent output contained unsupported information.
+synthetic_da5acf3d,hallucination,Agent output contained unsupported information.
+synthetic_929d9432,hallucination,Agent output contained unsupported information.
+synthetic_020efe2b,hallucination,Agent output contained unsupported information.
+synthetic_3e413a36,hallucination,Agent output contained unsupported information.
+synthetic_aad5115b,hallucination,Agent output contained unsupported information.
+synthetic_d34079db,hallucination,Agent output contained unsupported information.
+synthetic_f8ba543d,hallucination,Agent output contained unsupported information.
+synthetic_0aa3aec4,hallucination,Agent output contained unsupported information.
+synthetic_a5471a94,hallucination,Agent output contained unsupported information.
+synthetic_9d0c889e,hallucination,Agent output contained unsupported information.
+synthetic_56f092fb,hallucination,Agent output contained unsupported information.
+synthetic_769c3c60,hallucination,Agent output contained unsupported information.
+synthetic_3dbd0df0,hallucination,Agent output contained unsupported information.
+synthetic_0c83f7cc,hallucination,Agent output contained unsupported information.
+synthetic_2c30b303,hallucination,Agent output contained unsupported information.
+synthetic_6808f171,hallucination,Agent output contained unsupported information.
+synthetic_d219c8e9,hallucination,Agent output contained unsupported information.
+synthetic_39694c71,hallucination,Agent output contained unsupported information.
+synthetic_d05e4009,hallucination,Agent output contained unsupported information.
+synthetic_fc523584,hallucination,Agent output contained unsupported information.
+synthetic_6e091996,hallucination,Agent output contained unsupported information.
+synthetic_eeb69ed4,hallucination,Agent output contained unsupported information.
+synthetic_02902653,hallucination,Agent output contained unsupported information.
+synthetic_47f93821,hallucination,Agent output contained unsupported information.
+synthetic_a70c44c0,hallucination,Agent output contained unsupported information.
+synthetic_d660d574,hallucination,Agent output contained unsupported information.
+synthetic_f0259b77,hallucination,Agent output contained unsupported information.
+synthetic_d391349a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_96df2f4c,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b11e1b6f,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b345e8a6,intent_drift,Agent behavior deviated from the original goal.
+synthetic_a41f139f,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b8fd7865,intent_drift,Agent behavior deviated from the original goal.
+synthetic_e47dfa4b,intent_drift,Agent behavior deviated from the original goal.
+synthetic_4c28f1a5,intent_drift,Agent behavior deviated from the original goal.
+synthetic_92daef0f,intent_drift,Agent behavior deviated from the original goal.
+synthetic_61200b0a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_f67549ce,intent_drift,Agent behavior deviated from the original goal.
+synthetic_5fe3140e,intent_drift,Agent behavior deviated from the original goal.
+synthetic_53d8f3fa,intent_drift,Agent behavior deviated from the original goal.
+synthetic_0aefee75,intent_drift,Agent behavior deviated from the original goal.
+synthetic_42873905,intent_drift,Agent behavior deviated from the original goal.
+synthetic_5cafa743,intent_drift,Agent behavior deviated from the original goal.
+synthetic_73d31f0e,intent_drift,Agent behavior deviated from the original goal.
+synthetic_4452fdf3,intent_drift,Agent behavior deviated from the original goal.
+synthetic_0e2e5267,intent_drift,Agent behavior deviated from the original goal.
+synthetic_3bc6a482,intent_drift,Agent behavior deviated from the original goal.
+synthetic_e8b39d39,intent_drift,Agent behavior deviated from the original goal.
+synthetic_88a4c14e,intent_drift,Agent behavior deviated from the original goal.
+synthetic_e15ee0dd,intent_drift,Agent behavior deviated from the original goal.
+synthetic_81027df2,intent_drift,Agent behavior deviated from the original goal.
+synthetic_0ac8e498,intent_drift,Agent behavior deviated from the original goal.
+synthetic_a16b9225,intent_drift,Agent behavior deviated from the original goal.
+synthetic_4cf50ce3,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b632805a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_c9add635,intent_drift,Agent behavior deviated from the original goal.
+synthetic_bb3c3e8c,intent_drift,Agent behavior deviated from the original goal.
+synthetic_fe60fc5a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_34ab9f80,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b8eba886,intent_drift,Agent behavior deviated from the original goal.
+synthetic_9568dc07,intent_drift,Agent behavior deviated from the original goal.
+synthetic_7b8be84c,intent_drift,Agent behavior deviated from the original goal.
+synthetic_2f41a6d4,intent_drift,Agent behavior deviated from the original goal.
+synthetic_87cfdad7,intent_drift,Agent behavior deviated from the original goal.
+synthetic_d2f14d80,intent_drift,Agent behavior deviated from the original goal.
+synthetic_b874ae6a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_c50d9f6a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_853e69a3,intent_drift,Agent behavior deviated from the original goal.
+synthetic_2da78a23,intent_drift,Agent behavior deviated from the original goal.
+synthetic_04e9a64b,intent_drift,Agent behavior deviated from the original goal.
+synthetic_f728bd3f,intent_drift,Agent behavior deviated from the original goal.
+synthetic_83ba1602,intent_drift,Agent behavior deviated from the original goal.
+synthetic_df33b495,intent_drift,Agent behavior deviated from the original goal.
+synthetic_5d9bb509,intent_drift,Agent behavior deviated from the original goal.
+synthetic_c3a9290b,intent_drift,Agent behavior deviated from the original goal.
+synthetic_77cd930a,intent_drift,Agent behavior deviated from the original goal.
+synthetic_4a3fb6ce,intent_drift,Agent behavior deviated from the original goal.
