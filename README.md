@@ -394,15 +394,56 @@ Vigil/
 
 ## Running Vigil
 
-### Start the Backend
+### Prerequisites
+
+Make sure the following are installed:
+
+- Python
+- PostgreSQL
+- Node.js
+- npm
+
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd Vigil
+```
+
+### 2. Create and Activate the Python Virtual Environment
+
+Windows PowerShell:
+```bash
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+### 3. Install Python Dependencies
+From the project root:
+```bash
+pip install -r requirements.txt
+```
+### 4. Configure Environment Variables
+
+Create a .env file in the project root and configure the required database and OpenAI settings.
+```bash
+DATABASE_URL=postgresql://<username>:<password>@localhost/<database>
+OPENAI_API_KEY=<your-openai-api-key>
+```
+### 5. Set Up PostgreSQL
+
+Create the Vigil PostgreSQL database and run the schema:
+```bash
+psql -U <username> -d <database> -f backend/schema.sql
+```
+This creates the database tables required by Vigil.
+
+### 6. Start the FastAPI Backend
 
 From the project root:
-
 ```bash
 uvicorn backend.main:app --reload
 ```
-
-The FastAPI backend runs at:
+The backend runs at:
 ```bash
 http://127.0.0.1:8000
 ```
@@ -410,37 +451,73 @@ FastAPI's interactive API documentation is available at:
 ```bash
 http://127.0.0.1:8000/docs
 ```
-### Run the SDK Trace Example
+Keep the backend running.
 
-From the project root:
+### 7. Start the React Dashboard
+
+Open a second terminal and from the project root run:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Open the local development URL shown by the frontend development server.
+
+### 8. Run the SDK Trace Example
+
+Open another terminal and from the project root run:
 ```bash
 python sdk/test_trace.py
 ```
-This runs a sample agent workflow through the Vigil SDK. The SDK captures the execution trace and sends it to the FastAPI ingestion endpoint.
+The SDK captures the LLM and tool execution steps, creates the structured trace, and sends it to the FastAPI ingestion endpoint.
 
-### Generate the Synthetic Benchmark Dataset
+The backend stores the trace in PostgreSQL and runs the failure classification pipeline.
+
+### 9. Generate the Synthetic Benchmark Dataset
+
+From the project root:
 ```bash
 python data/generate_trace.py
 ```
-This generates 700 synthetic traces and their corresponding ground truth labels for classifier evaluation.
+This generates the synthetic traces and their ground truth labels used for classifier evaluation.
 
-### Evaluate the Classifier
+### 10. Evaluate the Classifier
 ```bash
 python tests/evaluate_classifier.py
 ```
-This compares the classifier predictions stored in PostgreSQL with the synthetic ground truth labels and calculates precision, recall, and F1 for each failure mode.
+This compares the classifier predictions stored in PostgreSQL against the synthetic ground truth labels and calculates precision, recall, and F1 for each failure mode.
 
-### Run the Ingestion Benchmark
+### 11. Run the Ingestion Benchmark
 ```bash
 python tests/ingestion_benchmark.py
 ```
 This measures the throughput of the end to end trace ingestion and classification pipeline.
 
-### Run the Query Latency Benchmark
+### 12. Run the Query Latency Benchmark
 ```bash
 python tests/query_benchmark.py
 ```
 This measures trace retrieval latency through the FastAPI API and reports p50 and p95 latency for representative queries.
+
+End to End Flow
+AI Agent
+   |
+   v
+Vigil SDK
+   |
+   v
+FastAPI
+   |
+   v
+PostgreSQL
+   |
+   v
+Failure Classifier
+   |
+   v
+React Dashboard
+
+The benchmark scripts are separate from the normal application flow and are used to evaluate classifier accuracy and system performance.
 
 ## End to End Example
 
