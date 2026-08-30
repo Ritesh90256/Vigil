@@ -2,6 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from fastapi import FastAPI, logger, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import create_engine, text
 from classifier.core import classify_trace
 from .models import FailureMode
@@ -11,6 +12,14 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_engine(DATABASE_URL)
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 
@@ -113,7 +122,7 @@ def get_all_traces(
         query += " WHERE " + " AND ".join(conditions)
 
     #pagination
-    query += " LIMIT :limit OFFSET :offset"
+    query += " ORDER BY id DESC LIMIT :limit OFFSET :offset"
     params["limit"] = limit
     params["offset"] = offset
 

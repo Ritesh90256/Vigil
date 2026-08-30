@@ -14,9 +14,9 @@ function RecentTraces({traces}) {
         </div>
 
         {traces.map((trace) => (
-          <div className="trace-row" key={trace.goal}>
-            <span>{trace.goal}</span>
-            <span>{trace.failure}</span>
+          <div className="trace-row" key={trace.id}>
+            <span>{trace.agent_goal}</span>
+            <span>{trace.failure_mode}</span>
             <span>{trace.confidence}</span>
           </div>
         ))}

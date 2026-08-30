@@ -1,41 +1,86 @@
+import { useEffect, useState } from "react"
 import StatCard from "./StatCard"
 import RecentTraces from "./RecentTraces"
 
+const API_URL = "http://127.0.0.1:8000"
+
 function Dashboard() {
-    const traces = [
-        {
-            goal: "Find the weather in a city",
-            failure: "None",
-            confidence: "High",
-        },
-        {
-            goal: "Schedule a meeting",
-            failure: "Tool Misuse",
-            confidence: "High",
-        },
-        {
-            goal: "Search for AI news",
-            failure: "Hallucination",
-            confidence: "Medium",
-        },
-        ]
-    return (
-        <section className="dashboard">
-            <div className="dashboard-header">
-              <h1>Overview</h1>
-              <p>Monitor AI agent activity and failures.</p>
-            </div>
+  const [traces, setTraces] = useState([])
+  const [stats, setStats] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-            <div className="stats">
-                <StatCard title="Total Traces" value="767" />
-                <StatCard title="Failures" value="106" />
-                <StatCard title="Failure Rate" value="13.8%" />
-            </div>
+  useEffect(() => {
+    Promise.all([
+      fetch(`${API_URL}/traces?limit=20`),
+      fetch(`${API_URL}/stats`)
+    ])
+      .then(([tracesResponse, statsResponse]) => {
+        if (!tracesResponse.ok || !statsResponse.ok) {
+          throw new Error("Failed to fetch dashboard data")
+        }
 
-            <RecentTraces traces = {traces} />
+        return Promise.all([
+          tracesResponse.json(),
+          statsResponse.json()
+        ])
+      })
+      .then(([tracesData, statsData]) => {
+        setTraces(tracesData)
+        setStats(statsData)
+      })
+      .catch((error) => {
+        console.error(error)
+        setError("Failed to load dashboard data.")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
 
-          </section>
-    )
+  const totalTraces = stats?.total_traces ?? 0
+
+  const failures =
+    totalTraces -
+    (stats?.failure_count?.none ?? 0) -
+    (stats?.failure_count?.unclassified ?? 0)
+
+  const failureRate =
+    totalTraces > 0
+      ? ((failures / totalTraces) * 100).toFixed(1)
+      : 0
+
+  if (error) {
+    return <p>{error}</p>
+  }
+
+  return (
+    <section className="dashboard">
+      <div className="dashboard-header">
+        <h1>Overview</h1>
+        <p>Monitor AI agent activity and failures.</p>
+      </div>
+
+      <div className="stats">
+        <StatCard
+          title="Total Traces"
+          value={loading ? "..." : totalTraces}
+        />
+
+        <StatCard
+          title="Failures"
+          value={loading ? "..." : failures}
+        />
+
+        <StatCard
+          title="Failure Rate"
+          value={loading ? "..." : `${failureRate}%`}
+        />
+      </div>
+
+      <RecentTraces traces={traces} />
+    </section>
+  )
 }
 
 export default Dashboard

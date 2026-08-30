@@ -7,3 +7,4 @@ class FailureMode(str, Enum):
     CONTEXT_OVERFLOW = "context_overflow"
     INTENT_DRIFT = "intent_drift"
     RETRY_STORM = "retry_storm"
+    NONE = "none"
