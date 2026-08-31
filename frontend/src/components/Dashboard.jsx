@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import StatCard from "./StatCard"
 import TraceExplorer from "./TraceExplorer"
+import TraceDetail from "./TraceDetail"
 
 const API_URL = "http://127.0.0.1:8000"
 
@@ -9,6 +10,7 @@ function Dashboard() {
   const [stats, setStats] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [selectedTraceId, setSelectedTraceId] = useState(null)
 
   useEffect(() => {
     Promise.all([
@@ -78,7 +80,8 @@ function Dashboard() {
         />
       </div>
 
-      <TraceExplorer />
+      <TraceExplorer onTraceSelect={setSelectedTraceId} />
+      {selectedTraceId && ( <TraceDetail traceId={selectedTraceId} />)}
     </section>
   )
 }

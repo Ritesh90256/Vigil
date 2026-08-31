@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 const API_URL = "http://127.0.0.1:8000"
 
-function TraceExplorer() {
+function TraceExplorer({ onTraceSelect }) {
   const [failureMode, setFailureMode] = useState("")
   const [confidence, setConfidence] = useState("")
   const [page, setPage] = useState(1)
@@ -113,7 +113,7 @@ function TraceExplorer() {
           </div>
 
           {traces.map((trace) => (
-            <div className="trace-row" key={trace.id}>
+            <div className="trace-row" key={trace.id} onClick={() => onTraceSelect(trace.id)}>
               <span>{trace.agent_goal}</span>
               <span>{trace.failure_mode}</span>
               <span>{trace.confidence}</span>
