@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import StatCard from "./StatCard"
-import RecentTraces from "./RecentTraces"
+import TraceExplorer from "./TraceExplorer"
 
 const API_URL = "http://127.0.0.1:8000"
 
@@ -78,7 +78,7 @@ function Dashboard() {
         />
       </div>
 
-      <RecentTraces traces={traces} />
+      <TraceExplorer />
     </section>
   )
 }
