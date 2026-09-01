@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import StatCard from "./StatCard"
 import TraceExplorer from "./TraceExplorer"
 import TraceDetail from "./TraceDetail"
+import FailureAnalytics from "./FailureAnalytics"
 
 const API_URL = "http://127.0.0.1:8000"
 
@@ -82,6 +83,8 @@ function Dashboard() {
 
       <TraceExplorer onTraceSelect={setSelectedTraceId} />
       {selectedTraceId && ( <TraceDetail traceId={selectedTraceId} />)}
+      <FailureAnalytics />
+      
     </section>
   )
 }

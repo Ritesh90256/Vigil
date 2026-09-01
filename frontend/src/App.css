@@ -205,3 +205,108 @@
 .execution-step:last-child::before {
   bottom: 50%;
 }
+
+.analytics-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.analytics-card {
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.analytics-card h3 {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.analytics-card strong {
+    font-size: 28px;
+}
+
+.failure-distribution {
+    margin-top: 32px;
+}
+
+.failure-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.failure-bar-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 40px;
+    align-items: center;
+    gap: 12px;
+}
+
+.failure-label {
+    text-transform: capitalize;
+}
+
+.failure-bar-track {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.failure-bar {
+    height: 100%;
+    background: #374151;
+    border-radius: 6px;
+}
+
+.failure-count {
+    text-align: right;
+    font-weight: 600;
+}
+
+.classifier-performance {
+    margin-top: 32px;
+}
+
+.metrics-table {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.metrics-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.metrics-row:last-child {
+    border-bottom: none;
+}
+
+.metrics-header {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .analytics-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .failure-bar-row {
+        grid-template-columns: 120px 1fr 40px;
+    }
+
+    .metrics-row {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 8px;
+        padding: 12px;
+    }
+}
