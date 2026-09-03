@@ -89,6 +89,7 @@ def create_trace(trace: dict):
 def get_all_traces(
     failure_mode: FailureMode | None = None,
     confidence: str | None = None,
+    search: str | None = None,
     page: int = Query(1, ge=1),
     limit: int = Query(20, ge=1, le=100)
     ):
@@ -117,6 +118,10 @@ def get_all_traces(
     if confidence:
         conditions.append("confidence = :confidence")
         params["confidence"] = confidence
+
+    if search:
+        conditions.append("agent_goal ILIKE :search")
+        params["search"] = f"%{search}%"
     
     if conditions:
         query += " WHERE " + " AND ".join(conditions)
