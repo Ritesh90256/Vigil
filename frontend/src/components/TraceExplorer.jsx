@@ -12,12 +12,13 @@ function TraceExplorer({ onTraceSelect }) {
     const [error, setError] = useState(null)
     const [search, setSearch] = useState("")
     const [debouncedSearch, setDebouncedSearch] = useState("")
+
     const clearFilters = () => {
-    setSearch("")
-    setFailureMode("")
-    setConfidence("")
-    setPage(1)
-    setHasNextPage(true)
+        setSearch("")
+        setFailureMode("")
+        setConfidence("")
+        setPage(1)
+        setHasNextPage(true)
     }
 
     useEffect(() => {
@@ -28,7 +29,7 @@ function TraceExplorer({ onTraceSelect }) {
         return () => {
             clearTimeout(timer)
         }
-    }, [search]) 
+    }, [search])
 
     useEffect(() => {
         setLoading(true)
@@ -95,7 +96,11 @@ function TraceExplorer({ onTraceSelect }) {
                     type="text"
                     placeholder="Search agent goals..."
                     value={search}
-                    onChange={(event) => setSearch(event.target.value)}
+                    onChange={(event) => {
+                        setSearch(event.target.value)
+                        setPage(1)
+                        setHasNextPage(true)
+                    }}
                 />
 
                 <label htmlFor="failure-mode">Failure Mode</label>
@@ -131,15 +136,15 @@ function TraceExplorer({ onTraceSelect }) {
                         setHasNextPage(true)
                     }}
                 >
-                  <button onClick={clearFilters}>
-                    Clear Filters
-                  </button>
-
                     <option value="">All</option>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
                     <option value="low">Low</option>
                 </select>
+
+                <button onClick={clearFilters}>
+                    Clear Filters
+                </button>
             </div>
 
             {loading ? (
