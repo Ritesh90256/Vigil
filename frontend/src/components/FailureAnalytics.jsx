@@ -38,6 +38,16 @@ const CLASSIFIER_METRICS = {
     }
 }
 
+const FAILURE_COLORS = [
+    "#7c9cff",
+    "#60a5fa",
+    "#4ade80",
+    "#fbbf24",
+    "#fb7185",
+    "#c084fc",
+    "#22d3ee"
+]
+
 function FailureAnalytics() {
     const [stats, setStats] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -65,11 +75,11 @@ function FailureAnalytics() {
     }, [])
 
     if (loading) {
-        return <p>Loading analytics...</p>
+        return <p className="status-message">Loading analytics...</p>
     }
 
     if (error) {
-        return <p>{error}</p>
+        return <p className="status-message">{error}</p>
     }
 
     const totalTraces = stats?.total_traces ?? 0
@@ -96,16 +106,51 @@ function FailureAnalytics() {
         "intent_drift"
     ]
 
-    const maxFailureCount = Math.max(
-        ...failureModes.map((mode) => failureCounts[mode] ?? 0),
-        1
+    const composition = failureModes.map((mode) => ({
+        mode,
+        count: failureCounts[mode] ?? 0
+    }))
+
+    const totalDetectedFailures = composition.reduce(
+        (sum, item) => sum + item.count,
+        0
     )
+
+    let currentAngle = 0
+
+    const donutSegments = composition.map((item) => {
+        const percentage =
+            totalDetectedFailures > 0
+                ? (item.count / totalDetectedFailures) * 100
+                : 0
+
+        const startAngle = currentAngle
+        const endAngle = currentAngle + percentage
+        currentAngle = endAngle
+
+        return {
+            ...item,
+            percentage,
+            startAngle,
+            endAngle
+        }
+    })
+
+    const donutBackground =
+        donutSegments.length > 0
+            ? `conic-gradient(${donutSegments
+                  .map(
+                      (item, index) =>
+                          `${FAILURE_COLORS[index]} ${item.startAngle}% ${item.endAngle}%`
+                  )
+                  .join(", ")})`
+            : "var(--border)"
 
     return (
         <section className="failure-analytics">
-            <div className="section-header">
+            <div className="section-header" id="failures">
                 <h2>Failure Analytics</h2>
-                <p>Analyze detected AI agent failures.</p>
+                <p>Understand how often failures occur and how the classifier performs.</p>
             </div>
 
             <div className="analytics-stats">
@@ -127,38 +172,53 @@ function FailureAnalytics() {
 
             <div className="failure-distribution">
                 <div className="section-header">
-                    <h2>Failure Distribution</h2>
-                    <p>Number of traces detected for each failure mode.</p>
+                    <h2>Failure Composition</h2>
+                    <p>
+                        Share of detected failures belonging to each failure mode.
+                    </p>
                 </div>
 
-                <div className="failure-bars">
-                    {failureModes.map((mode) => {
-                        const count = failureCounts[mode] ?? 0
-                        const width = (count / maxFailureCount) * 100
+                <div className="failure-composition-layout">
+                    <div className="failure-donut-wrapper">
+                        <div
+                            className="failure-donut"
+                            style={{ "--donut-background": donutBackground }}
+                        >
+                            <div className="failure-donut-center">
+                                <strong>{totalDetectedFailures}</strong>
+                                <span>Detected</span>
+                            </div>
+                        </div>
+                    </div>
 
-                        return (
-                            <div className="failure-bar-row" key={mode}>
-                                <span className="failure-label">
-                                    {mode.replaceAll("_", " ")}
+                    <div className="failure-legend">
+                        {donutSegments.map((item, index) => (
+                            <div className="failure-legend-item" key={item.mode}>
+                                <span
+                                    className="failure-legend-dot"
+                                    style={{
+                                        background: FAILURE_COLORS[index]
+                                    }}
+                                />
+
+                                <span className="failure-legend-label">
+                                    {item.mode.replaceAll("_", " ")}
                                 </span>
 
-                                <div className="failure-bar-track">
-                                    <div
-                                        className="failure-bar"
-                                        style={{ width: `${width}%` }}
-                                    />
-                                </div>
+                                <span className="failure-legend-count">
+                                    {item.count}
+                                </span>
 
-                                <span className="failure-count">
-                                    {count}
+                                <span className="failure-legend-percent">
+                                    {item.percentage.toFixed(1)}%
                                 </span>
                             </div>
-                        )
-                    })}
+                        ))}
+                    </div>
                 </div>
             </div>
 
-            <div className="classifier-performance">
+            <div className="classifier-performance" id="analytics">
                 <div className="section-header">
                     <h2>Classifier Performance</h2>
                     <p>
@@ -176,21 +236,13 @@ function FailureAnalytics() {
 
                     {Object.entries(CLASSIFIER_METRICS).map(([mode, metrics]) => (
                         <div className="metrics-row" key={mode}>
-                            <span>
-                                {mode.replaceAll("_", " ")}
-                            </span>
+                            <span>{mode.replaceAll("_", " ")}</span>
 
-                            <span>
-                                {(metrics.precision * 100).toFixed(2)}%
-                            </span>
+                            <span>{(metrics.precision * 100).toFixed(2)}%</span>
 
-                            <span>
-                                {(metrics.recall * 100).toFixed(2)}%
-                            </span>
+                            <span>{(metrics.recall * 100).toFixed(2)}%</span>
 
-                            <span>
-                                {(metrics.f1 * 100).toFixed(2)}%
-                            </span>
+                            <span>{(metrics.f1 * 100).toFixed(2)}%</span>
                         </div>
                     ))}
                 </div>

@@ -7,86 +7,81 @@ import FailureAnalytics from "./FailureAnalytics"
 const API_URL = "http://127.0.0.1:8000"
 
 function Dashboard() {
-  const [traces, setTraces] = useState([])
-  const [stats, setStats] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const [selectedTraceId, setSelectedTraceId] = useState(null)
+    const [stats, setStats] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(null)
+    const [selectedTraceId, setSelectedTraceId] = useState(null)
 
-  useEffect(() => {
-    Promise.all([
-      fetch(`${API_URL}/traces?limit=20`),
-      fetch(`${API_URL}/stats`)
-    ])
-      .then(([tracesResponse, statsResponse]) => {
-        if (!tracesResponse.ok || !statsResponse.ok) {
-          throw new Error("Failed to fetch dashboard data")
-        }
-
-        return Promise.all([
-          tracesResponse.json(),
-          statsResponse.json()
+    useEffect(() => {
+        Promise.all([
+            fetch(`${API_URL}/stats`)
         ])
-      })
-      .then(([tracesData, statsData]) => {
-        setTraces(tracesData)
-        setStats(statsData)
-      })
-      .catch((error) => {
-        console.error(error)
-        setError("Failed to load dashboard data.")
-      })
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+            .then(([statsResponse]) => {
+                if (!statsResponse.ok) {
+                    throw new Error("Failed to fetch dashboard data")
+                }
 
-  const totalTraces = stats?.total_traces ?? 0
+                return statsResponse.json()
+            })
+            .then((statsData) => {
+                setStats(statsData)
+            })
+            .catch((error) => {
+                console.error(error)
+                setError("Failed to load dashboard data.")
+            })
+            .finally(() => {
+                setLoading(false)
+            })
+    }, [])
 
-  const failures =
-    totalTraces -
-    (stats?.failure_count?.none ?? 0) -
-    (stats?.failure_count?.unclassified ?? 0)
+    const totalTraces = stats?.total_traces ?? 0
 
-  const failureRate =
-    totalTraces > 0
-      ? ((failures / totalTraces) * 100).toFixed(1)
-      : 0
+    const failures =
+        totalTraces -
+        (stats?.failure_count?.none ?? 0) -
+        (stats?.failure_count?.unclassified ?? 0)
 
-  if (error) {
-    return <p>{error}</p>
-  }
+    const failureRate =
+        totalTraces > 0
+            ? ((failures / totalTraces) * 100).toFixed(1)
+            : 0
 
-  return (
-    <section className="dashboard">
-      <div className="dashboard-header">
-        <h1>Overview</h1>
-        <p>Monitor AI agent activity and failures.</p>
-      </div>
+    if (error) {
+        return <p className="status-message">{error}</p>
+    }
 
-      <div className="stats">
-        <StatCard
-          title="Total Traces"
-          value={loading ? "..." : totalTraces}
-        />
+    return (
+        <section className="dashboard">
+            <div className="dashboard-header" id="overview">
+                <h1>Overview</h1>
+                <p>Monitor AI agent activity, execution health, and detected failures.</p>
+            </div>
 
-        <StatCard
-          title="Failures"
-          value={loading ? "..." : failures}
-        />
+            <div className="stats">
+                <StatCard
+                    title="Total Traces"
+                    value={loading ? "..." : totalTraces}
+                />
 
-        <StatCard
-          title="Failure Rate"
-          value={loading ? "..." : `${failureRate}%`}
-        />
-      </div>
+                <StatCard
+                    title="Failures"
+                    value={loading ? "..." : failures}
+                />
 
-      <TraceExplorer onTraceSelect={setSelectedTraceId} />
-      {selectedTraceId && ( <TraceDetail traceId={selectedTraceId} />)}
-      <FailureAnalytics />
-      
-    </section>
-  )
+                <StatCard
+                    title="Failure Rate"
+                    value={loading ? "..." : `${failureRate}%`}
+                />
+            </div>
+
+            <TraceExplorer onTraceSelect={setSelectedTraceId} />
+
+            {selectedTraceId && <TraceDetail traceId={selectedTraceId} />}
+
+            <FailureAnalytics />
+        </section>
+    )
 }
 
 export default Dashboard

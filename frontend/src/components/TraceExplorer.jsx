@@ -77,15 +77,11 @@ function TraceExplorer({ onTraceSelect }) {
             })
     }, [failureMode, confidence, debouncedSearch, page])
 
-    if (error) {
-        return <p>{error}</p>
-    }
-
     return (
-        <div className="recent-traces">
+        <section className="recent-traces" id="traces">
             <div className="section-header">
-                <h2>Recent Traces</h2>
-                <p>Latest AI agent executions.</p>
+                <h2>Trace Explorer</h2>
+                <p>Search and inspect recent AI agent executions.</p>
             </div>
 
             <div className="filters">
@@ -147,10 +143,12 @@ function TraceExplorer({ onTraceSelect }) {
                 </button>
             </div>
 
-            {loading ? (
-                <p>Loading traces...</p>
+            {error ? (
+                <p className="status-message">{error}</p>
+            ) : loading ? (
+                <p className="status-message">Loading traces...</p>
             ) : traces.length === 0 ? (
-                <p>No traces found.</p>
+                <p className="status-message">No traces found.</p>
             ) : (
                 <div className="trace-table">
                     <div className="trace-row trace-header">
@@ -166,14 +164,14 @@ function TraceExplorer({ onTraceSelect }) {
                             onClick={() => onTraceSelect(trace.id)}
                         >
                             <span>{trace.agent_goal}</span>
-                            <span>{trace.failure_mode}</span>
+                            <span>{trace.failure_mode.replaceAll("_", " ")}</span>
                             <span>{trace.confidence}</span>
                         </div>
                     ))}
                 </div>
             )}
 
-            {!loading && traces.length > 0 && (
+            {!loading && !error && traces.length > 0 && (
                 <div className="pagination">
                     <button
                         onClick={() => setPage(page - 1)}
@@ -192,7 +190,7 @@ function TraceExplorer({ onTraceSelect }) {
                     </button>
                 </div>
             )}
-        </div>
+        </section>
     )
 }
 
