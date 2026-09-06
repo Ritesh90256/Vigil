@@ -1,314 +1,460 @@
 # Vigil
 
-Vigil is an open source observability platform for AI agents. It captures the internal execution of an agent, stores structured traces, and automatically detects common failure modes.
+Vigil is an AI agent observability platform that captures agent execution traces, stores structured execution data, detects common agent failures, and provides an interactive dashboard for investigation and analysis.
 
 AI agents often perform multiple LLM calls, invoke external tools, and make intermediate decisions before producing a final response. Looking only at the final response makes it difficult to understand how or why an agent failed.
 
-Vigil addresses this by capturing the complete execution trace of an agent. The SDK records LLM calls and tool executions along with prompts, outputs, token usage, latency, and other execution metadata. These traces are sent to a FastAPI backend, stored in PostgreSQL, and analyzed by a hybrid failure classifier.
+Vigil addresses this by capturing the execution trace of an agent. The SDK records LLM calls and tool executions with prompts, outputs, token usage, latency, and execution metadata. Completed traces are sent to a FastAPI backend, stored in PostgreSQL, classified by a hybrid failure detection system, and exposed through a React dashboard.
 
-The classifier combines deterministic heuristics for structurally identifiable failures with an LLM based judge for failures that require semantic analysis. The resulting classifications, confidence scores, and reasoning can then be explored through the Vigil dashboard.
+At a high level:
 
-At a high level, the system follows:
-
-AI Agent → Vigil SDK → FastAPI → PostgreSQL → Failure Classifier → Dashboard
+```text
+AI Agent
+    |
+    v
+Vigil SDK
+    |
+    v
+FastAPI Backend
+    |
+    +------------------+
+    |                  |
+    v                  v
+PostgreSQL       Failure Classifier
+                      |
+              +-------+-------+
+              |               |
+              v               v
+        Deterministic     LLM Judge
+         Heuristics
+              |               |
+              +-------+-------+
+                      |
+                      v
+                Classification
+                      |
+                      v
+                 PostgreSQL
+                      |
+                      v
+                React Dashboard
+```
 
 ## Why Vigil?
 
-AI agents are more difficult to debug than traditional applications because a single user request can involve multiple LLM calls, tool executions, external services, and intermediate decisions.
+AI agents are more difficult to debug than traditional applications because a single request can involve multiple model calls, tool executions, external services, and intermediate decisions.
 
-A failure may not be visible from the final response alone. An agent can produce an incorrect result because it repeatedly calls a tool, retries a failing service, passes invalid arguments, exceeds its available context, follows malicious instructions returned by a tool, generates unsupported information, or gradually moves away from the user's original goal.
+A failure may not be visible from the final response alone. An agent may:
 
-Vigil provides visibility into these intermediate execution steps by capturing them as structured traces.
+- repeatedly call the same tool
+- repeatedly retry a failing service
+- use malformed tool arguments
+- exceed its available context
+- follow malicious instructions returned by external content
+- generate unsupported information
+- gradually move away from the original user objective
+
+Vigil makes these execution steps observable as structured traces.
 
 This allows developers to:
 
 - inspect how an agent reached its final response
 - identify where an execution failed
 - automatically classify common failure modes
-- retrieve and filter stored traces
-- analyze failure patterns and system performance
-- evaluate the accuracy of failure detection using ground truth data
+- search and filter stored traces
+- inspect individual execution steps
+- analyze failure distributions
+- evaluate classifier performance against known ground truth
+- measure ingestion and retrieval performance
 
-The goal is to make AI agent failures observable, reproducible, and measurable rather than relying only on the final model output.
+The goal is to make AI agent failures observable, reproducible, and measurable rather than relying only on final model outputs.
 
 ## Architecture
 
-Vigil is organized as a pipeline that follows an AI agent execution from trace capture to failure analysis and visualization.
+Vigil is organized into five primary layers.
+
+### 1. SDK
+
+The SDK instruments an AI agent execution.
+
+A `Trace` records:
+
+- agent goal
+- trace ID
+- timestamp
+- LLM calls
+- tool calls
+- input prompts
+- outputs
+- token usage
+- execution latency
+- final output
+
+### 2. FastAPI Backend
+
+The backend receives completed traces through REST APIs.
+
+It is responsible for:
+
+- trace ingestion
+- PostgreSQL storage
+- failure classification
+- trace retrieval
+- filtering
+- pagination
+- aggregate statistics
+
+### 3. PostgreSQL
+
+PostgreSQL provides persistent storage for traces and their classification results.
+
+The current application uses the `traces` table with the fields:
 
 ```text
-AI Agent
-   |
-   | LLM calls and tool executions
-   v
-Vigil SDK
-   |
-   | Structured trace
-   v
-FastAPI Backend
-   |
-   +------------------+
-   |                  |
-   v                  v
-PostgreSQL       Failure Classifier
-                      |
-                +-----+-----+
-                |           |
-                v           v
-           Heuristics    LLM Judge
-                |           |
-                +-----+-----+
-                      |
-                      v
-              Classification
-                      |
-                      v
-                PostgreSQL
-                      |
-                      v
-                React Dashboard
+id
+trace_data
+failure_mode
+confidence
+reasoning
+agent_goal
 ```
 
-### Trace Capture
+Database schema evolution is managed through Alembic migrations.
 
-The Vigil SDK runs alongside an AI agent and records its execution as a structured trace. Each trace contains the agent goal, execution steps, LLM calls, tool calls, latency, token usage, inputs, outputs, and final response.
+### 4. Failure Classifier
 
-### Ingestion
+The classifier uses a hybrid architecture.
 
-The completed trace is sent to the FastAPI backend through a REST API. The backend stores the trace in PostgreSQL and passes it to the failure classifier.
+Structural failures are detected with deterministic heuristics. When no heuristic identifies a failure, the trace is passed to an LLM based judge for semantic analysis.
 
-### Failure Classification
+### 5. React Dashboard
 
-The classifier first applies deterministic heuristics for failure modes that can be identified from structured trace patterns. When no heuristic identifies a failure, the trace can be passed to the LLM based judge for semantic classification.
+The frontend provides an interactive interface for:
 
-### Dashboard
-
-The React dashboard retrieves the stored trace and classification data through REST APIs and presents it through trace exploration, failure analysis, execution timelines, and aggregate metrics.
+- overview statistics
+- trace search
+- failure filtering
+- confidence filtering
+- pagination
+- trace inspection
+- execution timelines
+- failure composition
+- classifier performance
 
 ## Trace Capture
 
-Vigil provides an SDK for capturing AI agent execution with minimal integration.
+The SDK is centered around the `Trace` class.
 
-A trace records the agent's goal and the sequence of operations performed during an execution. LLM calls and tool calls are represented as structured steps with the metadata required for debugging and failure analysis.
+A typical execution looks like:
 
-Each LLM step can capture:
+```python
+from sdk.trace import Trace
+from sdk.sender import send_trace_to_backend
 
-- model used
+
+def weather_api(tool_input):
+    return {
+        "temperature": "28°C"
+    }
+
+
+trace = Trace("Get today's weather")
+
+trace.add_llm_step(
+    input_prompt="What is the weather today?",
+    model="gpt-4o-mini"
+)
+
+weather = trace.add_tool_step(
+    tool="weather_api",
+    tool_function=weather_api,
+    tool_input={"location": "New York"}
+)
+
+final_answer = trace.add_llm_step(
+    input_prompt=f"""
+The user asked:
+What is the weather today?
+
+The weather API returned:
+{weather}
+
+Answer the user's question in one sentence.
+""",
+    model="gpt-4o-mini"
+)
+
+trace.finish(final_output=final_answer)
+
+send_trace_to_backend(trace)
+```
+
+### LLM Steps
+
+Each LLM step records:
+
+- model
 - input prompt
 - output text
 - token count
 - execution latency
+- step number
+- timestamp
 
-Each tool step can capture:
+### Tool Steps
+
+Each tool step records:
 
 - tool name
 - tool input
 - tool output
 - execution latency
+- step number
+- timestamp
 
-A completed trace is serialized into a structured JSON payload and sent to the Vigil backend through the trace sender.
+### Finalization
 
-This allows the SDK to remain focused on observing the agent while the backend and classifier handle storage, analysis, and failure detection.
+`Trace.finish()` records:
+
+- final output
+- failure mode
+- confidence
+- classifier reasoning
+
+The completed trace can then be converted to a dictionary and sent to the backend.
 
 ## Failure Taxonomy
 
-Vigil uses a seven mode failure taxonomy to classify common failure patterns in AI agent executions.
+Vigil uses seven primary failure modes.
 
 ### Infinite Loop
 
-Detects repeated calls to the same tool with identical inputs in sequence.
+Repeated calls to the same tool with identical inputs without meaningful progress.
+
+The current heuristic detects three consecutive identical tool calls.
 
 ### Retry Storm
 
-Detects rapid repeated attempts to call the same tool with identical inputs when the tool repeatedly fails.
+Repeated calls to the same tool with identical inputs after repeated failures such as timeouts or errors.
+
+The current heuristic detects three consecutive failed calls with the same tool and input.
 
 ### Tool Misuse
 
-Detects tool calls with malformed or unexpected arguments, including invalid input types and empty inputs.
+Malformed or invalid tool inputs, including empty inputs and unexpected input types.
 
 ### Context Overflow
 
-Detects traces whose cumulative LLM token usage exceeds the configured threshold. The current implementation uses a 4,000 token threshold.
+A trace whose cumulative LLM token usage exceeds the configured threshold.
+
+The current threshold is:
+
+```text
+4000 tokens
+```
 
 ### Prompt Injection
 
-Detects suspicious instruction like patterns appearing inside tool outputs, including attempts to override instructions or expose prompts and sensitive information.
+Suspicious instruction like content appearing in tool outputs, including attempts to override instructions or expose prompts and sensitive information.
 
 ### Hallucination
 
-Identifies responses that contain information unsupported by the available trace evidence or retrieved tool results.
+An agent produces unsupported or fabricated information that is not justified by the available trace evidence.
 
 ### Intent Drift
 
-Identifies cases where the agent's behavior deviates from the original objective of the user request.
-
-The first five failure modes are currently handled by deterministic heuristics. Hallucination and intent drift are handled by the LLM based judge when they are not detected by the deterministic layer.
+The agent gradually deviates from the original user objective.
 
 ## Hybrid Failure Classification
 
-Vigil uses a hybrid approach to failure detection. The classifier first applies deterministic heuristics to the structured trace and uses an LLM based judge when the trace is not matched by the available heuristics.
+Vigil does not use an LLM for every classification.
+
+The classifier first checks deterministic structural patterns:
 
 ```text
 Structured Trace
-       |
-       v
+      |
+      v
 Failure Classifier
-       |
-       v
+      |
+      v
 Deterministic Heuristics
-       |
-       +---- Failure detected ----> Classification
-       |
-       +---- No failure detected
-                    |
-                    v
-                LLM Judge
-                    |
-                    v
-              Classification
+      |
+      +---- Failure detected ----> Classification
+      |
+      +---- No failure detected
+                  |
+                  v
+               LLM Judge
+                  |
+                  v
+             Classification
 ```
-The deterministic layer is used for failure modes that can be identified from explicit patterns in the trace. This provides fast and predictable detection without requiring an LLM call.
 
-The current deterministic heuristics detect:
+The deterministic layer currently handles:
 
-Infinite Loop
-Retry Storm
-Tool Misuse
-Context Overflow
-Prompt Injection
+```text
+infinite_loop
+retry_storm
+tool_misuse
+context_overflow
+prompt_injection
+```
 
-When none of these heuristics identifies a failure, the trace is passed to the LLM based judge. The judge receives the structured trace and evaluates behavior that requires semantic reasoning, such as hallucination and intent drift.
+If none of these heuristics identifies a failure, the structured trace is sent to the LLM based judge for semantic analysis.
 
-The classifier returns a failure mode along with a confidence level and reasoning that can be stored with the trace and displayed through the dashboard.
+The semantic layer handles cases such as:
 
-## Backend and Storage
+```text
+hallucination
+intent_drift
+none
+```
 
-### FastAPI
+The classifier returns a failure mode along with a confidence level and reasoning. These values are stored with the trace and exposed through the dashboard.
 
-FastAPI provides the REST API layer for Vigil. It receives completed traces from the SDK, stores them, runs failure classification, and exposes the stored data for retrieval and analysis.
+## Backend API
 
-The backend currently supports:
+The backend runs by default at:
 
-- trace ingestion through `POST /traces`
-- trace retrieval through `GET /traces`
-- filtering by failure mode
-- filtering by confidence
-- pagination
-- retrieving an individual trace by ID
-- aggregate trace statistics
+```text
+http://127.0.0.1:8000
+```
 
-The backend connects the trace capture layer with PostgreSQL and the failure classifier.
+Interactive FastAPI documentation is available at:
 
-### PostgreSQL
+```text
+http://127.0.0.1:8000/docs
+```
 
-PostgreSQL provides persistent storage for captured traces and their classification results.
+### GET /
 
-The database is designed around core observability concepts including:
+Health check.
 
-- `traces`
-- `spans`
-- `tool_calls`
-- `labels`
+Example response:
 
-The `traces` data contains the overall agent execution, while spans and tool call records provide more detailed execution information that can be used for trace inspection and visualization.
+```json
+{
+  "message": "Vigil backend running"
+}
+```
+
+### POST /traces
+
+Receives a completed trace from the SDK.
+
+The backend:
+
+1. stores the raw trace
+2. runs the failure classifier
+3. stores the classification result
+4. returns the database trace ID
+
+Example successful response:
+
+```json
+{
+  "status": "success",
+  "trace_id": 123
+}
+```
+
+If storage succeeds but classification fails, the trace remains stored and the endpoint returns a partial success response.
+
+### GET /traces
+
+Retrieves traces with support for:
+
+- `failure_mode`
+- `confidence`
+- `search`
+- `page`
+- `limit`
+
+Examples:
+
+```text
+/traces?page=1&limit=20
+/traces?failure_mode=retry_storm
+/traces?confidence=high
+/traces?search=weather
+/traces?failure_mode=retry_storm&confidence=high&search=weather
+```
+
+Search currently operates on `agent_goal`.
+
+### GET /traces/{trace_id}
+
+Retrieves one trace by database ID.
+
+A missing trace returns HTTP 404.
+
+### GET /stats
+
+Returns aggregate trace statistics, including:
+
+- total trace count
+- count for each failure mode
+- unclassified count
+
+The dashboard uses this endpoint for its overview and analytics sections.
 
 ## Dashboard
 
-Vigil includes a React based dashboard for exploring AI agent traces and analyzing detected failures.
+The frontend is implemented using React and Vite.
 
-The dashboard communicates with the FastAPI backend through REST APIs and presents stored trace and classification data through an interactive interface.
+### Overview
 
-The dashboard provides:
+Displays:
 
-- overview statistics for stored traces and detected failures
-- trace search and filtering
-- failure mode and confidence filtering
-- individual trace inspection
-- visualization of LLM and tool execution steps
-- execution latency and token usage information
-- classifier reasoning and confidence
-- failure distribution and performance analytics
+- total traces
+- total failures
+- failure rate
 
-The trace detail view presents an agent execution as a sequence of operations, making it possible to follow the path from the original objective through LLM calls and tool executions to the final output and detected failure.
+### Trace Explorer
 
-The dashboard provides the primary interface for investigating agent behavior without requiring developers to inspect raw JSON responses or query the PostgreSQL database directly.
+Provides:
+
+- search by agent goal
+- failure mode filtering
+- confidence filtering
+- combined filters
+- pagination
+- clickable trace rows
+
+### Trace Detail
+
+Displays:
+
+- trace ID
+- agent goal
+- failure mode
+- confidence
+- classifier reasoning
+- final output
+- execution timeline
+
+Each execution step displays the relevant metadata for an LLM call or tool call.
+
+### Failure Analytics
+
+Displays:
+
+- total traces
+- total failures
+- failure rate
+- failure composition
+- classifier precision
+- classifier recall
+- classifier F1
 
 ## Benchmarks
 
-Vigil was evaluated using a synthetic benchmark dataset containing 700 AI agent traces with known ground truth labels across seven failure modes.
+Vigil was evaluated using a synthetic benchmark containing 700 traces with known ground truth labels.
 
-### Trace Ingestion
+The dataset distribution is:
 
-The complete trace ingestion pipeline was benchmarked using 700 synthetic traces.
-
-The benchmark exercised the full backend path:
-
-```text
-Trace
-  |
-  v
-HTTP POST
-  |
-  v
-FastAPI
-  |
-  v
-PostgreSQL
-  |
-  v
-Failure Classifier
-  |
-  v
-PostgreSQL
-```
-
-## Results:
-
-**700 / 700 traces successfully processed**
-**0 failed requests**
-**654.95 seconds total processing time**
-**1.07 traces/sec end to end throughput**
-
-The benchmark was run sequentially, so the measured throughput includes HTTP handling, PostgreSQL operations, deterministic classification, and LLM judge execution where applicable.
-
-## Failure Classification
-
-The classifier was evaluated against the 700 trace ground truth dataset using precision, recall, and F1 for each failure mode.
-
-| Failure Mode     |  Precision |   Recall |         F1 |
-| ---------------- | ---------: | -------: | ---------: |
-| Infinite Loop    |   **100%** | **100%** |   **100%** |
-| Retry Storm      |   **100%** | **100%** |   **100%** |
-| Tool Misuse      |   **100%** | **100%** |   **100%** |
-| Context Overflow |   **100%** | **100%** |   **100%** |
-| Prompt Injection |   **100%** | **100%** |   **100%** |
-| Hallucination    |   **100%** |  **76%** | **86.36%** |
-| Intent Drift     | **79.37%** | **100%** | **88.50%** |
-
-The deterministic heuristics achieved perfect scores on the synthetic benchmark because the corresponding traces were deliberately constructed around the structural patterns they are designed to detect.
-
-The semantic failure modes produced more nuanced results. **Hallucination** achieved **100% precision** and **76% recall**, while **intent drift** achieved **79.37% precision** and **100% recall**.
-
-## Query and Retrieval Latency
-
-Trace retrieval was benchmarked through the FastAPI retrieval API against a PostgreSQL database containing **767 stored traces**.
-
-Three representative query types were each **executed 100 times**, resulting in **300 API retrieval requests**.
-
-| Query                  |          p50 |          p95 |
-| ---------------------- | -----------: | -----------: |
-| Retrieve traces        |  **6.83 ms** |  **9.81 ms** |
-| Filter by failure mode | **12.26 ms** | **18.57 ms** |
-| Filter by confidence   |  **9.77 ms** | **11.43 ms** |
-
-These measurements include the HTTP request, FastAPI processing, PostgreSQL query execution, and response generation.
-
-## Synthetic Benchmark Dataset
-
-Vigil includes a synthetic benchmark dataset designed to evaluate failure detection against known ground truth.
-
-The dataset contains 700 synthetic AI agent traces:
-
-| Category | Number of Traces |
+| Category | Traces |
 |---|---:|
 | Clean | 350 |
 | Infinite Loop | 50 |
@@ -320,47 +466,201 @@ The dataset contains 700 synthetic AI agent traces:
 | Intent Drift | 50 |
 | **Total** | **700** |
 
-The benchmark stores the raw traces separately from their ground truth labels.
+### End to End Ingestion Benchmark
 
-The raw traces contain only the information that would be available to the classifier during a real execution. The ground truth dataset stores the expected failure mode for each trace and is used only during evaluation.
+The complete ingestion pipeline was benchmarked with the 700 synthetic traces.
 
-This separation allows classifier predictions to be compared against known labels without exposing the expected answer to the classifier.
+The benchmark exercises:
+
+```text
+Synthetic Trace
+      |
+      v
+HTTP POST
+      |
+      v
+FastAPI
+      |
+      v
+PostgreSQL
+      |
+      v
+Failure Classifier
+      |
+      v
+PostgreSQL
+```
+
+Results:
+
+| Metric | Result |
+|---|---:|
+| Total traces | 700 |
+| Successfully processed | 700 |
+| Failed requests | 0 |
+| Total processing time | 654.95 seconds |
+| End to end throughput | 1.07 traces/sec |
+
+The benchmark was executed sequentially, so the result includes HTTP handling, PostgreSQL operations, deterministic classification, and LLM judge execution where applicable.
+
+### Classifier Evaluation
+
+Classifier predictions were compared against the 700 trace ground truth dataset using precision, recall, and F1.
+
+| Failure Mode | Precision | Recall | F1 |
+|---|---:|---:|---:|
+| Infinite Loop | 100% | 100% | 100% |
+| Retry Storm | 100% | 100% | 100% |
+| Tool Misuse | 100% | 100% | 100% |
+| Context Overflow | 100% | 100% | 100% |
+| Prompt Injection | 100% | 100% | 100% |
+| Hallucination | 100% | 76% | 86.36% |
+| Intent Drift | 79.37% | 100% | 88.50% |
+
+The deterministic failure modes achieved perfect scores on the synthetic benchmark because their traces were deliberately constructed around the structural patterns the heuristics are designed to detect.
+
+The semantic failure modes produced more nuanced results.
+
+Hallucination achieved:
+
+```text
+Precision: 100%
+Recall:     76%
+F1:         86.36%
+```
+
+Intent drift achieved:
+
+```text
+Precision: 79.37%
+Recall:    100%
+F1:         88.50%
+```
+
+### Query Latency Benchmark
+
+Trace retrieval was benchmarked at a close to 1,000 trace scale.
+
+The benchmark run used 767 stored traces and measured three representative query types 100 times each, for 300 API requests total.
+
+| Query | p50 | p95 |
+|---|---:|---:|
+| Retrieve traces | 6.83 ms | 9.81 ms |
+| Filter by failure mode | 12.26 ms | 18.57 ms |
+| Filter by confidence | 9.77 ms | 11.43 ms |
+
+After the benchmark, the database was cleaned so that only the canonical 700 synthetic benchmark traces remained.
+
+Current database state:
+
+```text
+Total traces:     700
+Synthetic traces: 700
+```
+
+## Synthetic Benchmark Dataset
+
+The benchmark data is stored separately from the application.
+
+### Raw Traces
+
+```text
+data/synthetic_traces.jsonl
+```
+
+Contains 700 synthetic traces without ground truth failure labels embedded in the trace data.
+
+### Ground Truth Labels
+
+```text
+data/synthetic_labels.csv
+```
+
+Contains the expected failure mode for each synthetic trace.
+
+The separation prevents the classifier from receiving the expected answer as part of the trace itself.
+
+### Dataset Generator
+
+```text
+data/generate_traces.py
+```
+
+The generator creates:
+
+- 350 clean traces
+- 50 traces for each failure mode
+- 700 traces total
+
+It also validates:
+
+- total trace count
+- total label count
+- unique trace IDs
+- matching trace and label IDs
+- absence of ground truth leakage
+- expected label distribution
 
 ## Project Structure
 
 ```text
 Vigil/
-│
-├── sdk/
-│   ├── trace.py
-│   ├── sender.py
-│   └── test_trace.py
-│
+|
 ├── backend/
 │   ├── main.py
 │   ├── models.py
-│   ├── database.py
-│   └── schema.sql
+│   ├── alembic.ini
+│   └── alembic/
+│       ├── env.py
+│       ├── README
+│       ├── script.py.mako
+│       └── versions/
 │
 ├── classifier/
 │   ├── core.py
 │   ├── prompt.txt
-│   └── batch_classify.py
+│   ├── test_traces.md
+│   └── __init__.py
 │
 ├── data/
-│   ├── generate_trace.py
+│   ├── generate_traces.py
 │   ├── synthetic_traces.jsonl
 │   └── synthetic_labels.csv
 │
+├── frontend/
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── vite.config.js
+│   ├── index.html
+│   └── src/
+│       ├── App.jsx
+│       ├── App.css
+│       ├── index.css
+│       ├── main.jsx
+│       └── components/
+│           ├── Dashboard.jsx
+│           ├── FailureAnalytics.jsx
+│           ├── Header.jsx
+│           ├── Sidebar.jsx
+│           ├── StatCard.jsx
+│           ├── TraceDetail.jsx
+│           └── TraceExplorer.jsx
+│
+├── sdk/
+│   ├── trace.py
+│   ├── sender.py
+│   ├── example_trace.py
+│   └── __init__.py
+│
 ├── tests/
-│   ├── ingestion_benchmark.py
 │   ├── evaluate_classifier.py
+│   ├── ingestion_benchmark.py
 │   └── query_benchmark.py
 │
-├── frontend/
-│   └── React dashboard
-│
-└── README.md
+├── .gitignore
+├── LICENSE
+├── README.md
+└── requirements.txt
 ```
 
 ## Tech Stack
@@ -371,13 +671,21 @@ Vigil/
 - FastAPI
 - SQLAlchemy
 - PostgreSQL
+- Alembic
 - REST APIs
 
-### AI and Classification
+### SDK
+
+- Python
+- OpenAI API
+- Requests
+
+### Failure Classification
 
 - OpenAI API
 - GPT 4o mini
-- Deterministic failure detection heuristics
+- Deterministic heuristics
+- LLM based semantic judge
 
 ### Frontend
 
@@ -385,18 +693,22 @@ Vigil/
 - React
 - JSX
 - CSS
+- Vite
 - REST API integration
 
 ### Development Tooling
 
+- Python virtual environment
 - Node.js
 - npm
+- Git
+- PostgreSQL
 
 ## Running Vigil
 
 ### Prerequisites
 
-Make sure the following are installed:
+Install:
 
 - Python
 - PostgreSQL
@@ -410,118 +722,171 @@ git clone <repository-url>
 cd Vigil
 ```
 
-### 2. Create and Activate the Python Virtual Environment
+### 2. Create the Python Virtual Environment
 
 Windows PowerShell:
-```bash
+
+```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
+
 ### 3. Install Python Dependencies
+
 From the project root:
-```bash
+
+```powershell
 pip install -r requirements.txt
 ```
+
 ### 4. Configure Environment Variables
 
-Create a .env file in the project root and configure the required database and OpenAI settings.
-```bash
-DATABASE_URL=postgresql://<username>:<password>@localhost/<database>
+Create a `.env` file in the project root.
+
+Set:
+
+```env
+DATABASE_URL=postgresql://<username>:<password>@localhost:<port>/<database>
 OPENAI_API_KEY=<your-openai-api-key>
 ```
-### 5. Set Up PostgreSQL
 
-Create the Vigil PostgreSQL database and run the schema:
-```bash
-psql -U <username> -d <database> -f backend/schema.sql
+Do not commit `.env`.
+
+### 5. Create the PostgreSQL Database
+
+Create an empty PostgreSQL database for Vigil.
+
+Then apply the Alembic migrations:
+
+```powershell
+cd backend
+alembic upgrade head
+cd ..
 ```
-This creates the database tables required by Vigil.
+
+The current migration head is:
+
+```text
+a9eace39d467
+```
 
 ### 6. Start the FastAPI Backend
 
 From the project root:
-```bash
+
+```powershell
 uvicorn backend.main:app --reload
 ```
-The backend runs at:
-```bash
+
+The backend will be available at:
+
+```text
 http://127.0.0.1:8000
 ```
-FastAPI's interactive API documentation is available at:
-```bash
+
+FastAPI interactive documentation:
+
+```text
 http://127.0.0.1:8000/docs
 ```
+
 Keep the backend running.
 
 ### 7. Start the React Dashboard
 
-Open a second terminal and from the project root run:
-```bash
+Open a second terminal.
+
+From the project root:
+
+```powershell
 cd frontend
 npm install
 npm run dev
 ```
-Open the local development URL shown by the frontend development server.
 
-### 8. Run the SDK Trace Example
+Open the local development URL displayed by Vite.
 
-Open another terminal and from the project root run:
-```bash
-python sdk/test_trace.py
-```
-The SDK captures the LLM and tool execution steps, creates the structured trace, and sends it to the FastAPI ingestion endpoint.
+### 8. Run the SDK Example
 
-The backend stores the trace in PostgreSQL and runs the failure classification pipeline.
-
-### 9. Generate the Synthetic Benchmark Dataset
+Keep the backend running and open another terminal.
 
 From the project root:
-```bash
-python data/generate_trace.py
-```
-This generates the synthetic traces and their ground truth labels used for classifier evaluation.
 
-### 10. Evaluate the Classifier
-```bash
+```powershell
+python sdk/example_trace.py
+```
+
+The example:
+
+1. creates a trace
+2. performs an LLM call
+3. performs a tool call
+4. performs another LLM call
+5. finalizes the trace
+6. sends the trace to the backend
+
+The backend then stores and classifies the trace.
+
+## Benchmark Commands
+
+### Generate the Synthetic Dataset
+
+From the project root:
+
+```powershell
+python data/generate_traces.py
+```
+
+This regenerates:
+
+```text
+data/synthetic_traces.jsonl
+data/synthetic_labels.csv
+```
+
+The generator validates the expected 700 trace distribution before saving the files.
+
+### Evaluate the Classifier
+
+Make sure the backend is running and the benchmark traces have been ingested.
+
+Then run:
+
+```powershell
 python tests/evaluate_classifier.py
 ```
-This compares the classifier predictions stored in PostgreSQL against the synthetic ground truth labels and calculates precision, recall, and F1 for each failure mode.
 
-### 11. Run the Ingestion Benchmark
-```bash
+This compares the classifications stored in PostgreSQL with the synthetic ground truth labels and prints precision, recall, and F1.
+
+### Run the Ingestion Benchmark
+
+Make sure the backend is running.
+
+Then run:
+
+```powershell
 python tests/ingestion_benchmark.py
 ```
-This measures the throughput of the end to end trace ingestion and classification pipeline.
 
-### 12. Run the Query Latency Benchmark
-```bash
+This sends the 700 synthetic traces through the complete ingestion and classification pipeline.
+
+Running it again will add another set of traces to the database.
+
+### Run the Query Benchmark
+
+Make sure the backend is running.
+
+Then run:
+
+```powershell
 python tests/query_benchmark.py
 ```
-This measures trace retrieval latency through the FastAPI API and reports p50 and p95 latency for representative queries.
 
-End to End Flow
-AI Agent
-   |
-   v
-Vigil SDK
-   |
-   v
-FastAPI
-   |
-   v
-PostgreSQL
-   |
-   v
-Failure Classifier
-   |
-   v
-React Dashboard
+This measures p50 and p95 latency for representative trace retrieval queries.
 
-The benchmark scripts are separate from the normal application flow and are used to evaluate classifier accuracy and system performance.
+## End to End Flow
 
-## End to End Example
-
-A typical Vigil execution follows this flow:
+A typical Vigil execution follows this path:
 
 ```text
 User Request
@@ -545,42 +910,56 @@ FastAPI Backend
      +----> PostgreSQL
      |
      +----> Failure Classifier
-                  |
-             +----+----+
-             |         |
-             v         v
-        Heuristics  LLM Judge
-             |         |
-             +----+----+
-                  |
-                  v
-         Failure Classification
-                  |
-                  v
-              PostgreSQL
-                  |
-                  v
-           React Dashboard
+                    |
+             +------+------+
+             |             |
+             v             v
+        Heuristics      LLM Judge
+             |             |
+             +------+------+
+                    |
+                    v
+              Classification
+                    |
+                    v
+               PostgreSQL
+                    |
+                    v
+             React Dashboard
 ```
 
-The SDK observes the agent while it executes the user's request and records the LLM and tool interactions that occur during the execution.
+The SDK observes the agent while it executes.
 
-The completed trace is sent to the FastAPI backend, where it is stored in PostgreSQL and analyzed by the failure classifier.
+The backend stores the completed trace.
 
-The classifier first checks deterministic heuristics for structurally identifiable failures. When no heuristic identifies a failure, the trace can be passed to the LLM based judge for semantic analysis.
+The classifier analyzes the execution.
 
-The resulting failure mode, confidence, reasoning, and execution data are then available through the dashboard for investigation and analysis.
+The dashboard exposes the resulting trace and classification for investigation.
 
-## Project Summary
+## Final Summary
 
-Vigil combines AI agent instrumentation, trace storage, failure detection, benchmarking, and interactive visualization into a single observability platform.
+Vigil combines AI agent instrumentation, trace storage, hybrid failure detection, benchmarking, and interactive visualization into one observability platform.
 
-The SDK captures LLM calls and tool executions as structured traces and sends them to a FastAPI backend. PostgreSQL provides persistent storage, while a hybrid failure classifier combines deterministic heuristics with an LLM based judge to identify common agent failures.
+The SDK captures LLM calls and tool executions as structured traces and sends them to a FastAPI backend. PostgreSQL provides persistent storage, while the failure classifier combines deterministic heuristics with an LLM based judge.
 
-The platform supports seven failure modes: infinite loop, retry storm, tool misuse, context overflow, prompt injection, hallucination, and intent drift.
+The platform detects seven primary failure modes:
 
-A synthetic benchmark containing 700 labeled traces provides a reproducible environment for evaluating the classifier using precision, recall, and F1. Separate ingestion and retrieval benchmarks measure system performance under realistic workloads.
+```text
+infinite_loop
+retry_storm
+tool_misuse
+context_overflow
+prompt_injection
+hallucination
+intent_drift
+```
 
-The React dashboard provides a visual interface for exploring traces, inspecting execution steps, analyzing detected failures, and understanding agent behavior from the initial goal through the final output.
+A synthetic benchmark containing 700 traces provides a reproducible environment for measuring classifier accuracy. Separate ingestion and retrieval benchmarks measure system performance.
 
-Vigil is designed to make AI agent execution observable, failure detection measurable, and debugging significantly easier than relying on final model outputs alone.
+The React dashboard provides a visual interface for searching traces, inspecting execution timelines, analyzing failures, and understanding agent behavior from the original goal through the final output.
+
+Vigil is designed to make AI agent execution observable, failure detection measurable, and debugging easier than relying only on final model outputs.
+
+## License
+
+Vigil is released under the MIT License. See `LICENSE` for details.

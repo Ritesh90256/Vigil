@@ -9,9 +9,8 @@ dist/
 build/
 *.log
 
-# Node / Next.js
+# Node / Vite
 node_modules/
-.next/
 .env.local
 .env*.local
 npm-debug.log*
@@ -23,5 +22,5 @@ npm-debug.log*
 *.sqlite
 *.db
 
-
+# Temporary Git backup
 .git-before-rewrite/

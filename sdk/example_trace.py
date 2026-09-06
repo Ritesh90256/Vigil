@@ -1,5 +1,12 @@
-from trace import Trace
-from sender import send_trace_to_backend
+from sdk.sender import send_trace_to_backend
+from sdk.trace import Trace
+
+
+def weather_api(tool_input):
+    return {
+        "temperature": "28°C"
+    }
+
 
 trace = Trace("Get today's weather")
 
@@ -8,15 +15,10 @@ trace.add_llm_step(
     model="gpt-4o-mini"
 )
 
-def weather_api(tool_input):
-    return{
-        "temperature":"28°C"
-    }
-
 weather = trace.add_tool_step(
-    tool = "weather_api",
-    tool_function = weather_api,
-    tool_input = {"location": "New York"}
+    tool="weather_api",
+    tool_function=weather_api,
+    tool_input={"location": "New York"}
 )
 
 final_answer = trace.add_llm_step(
@@ -33,6 +35,6 @@ Answer the user's question in one sentence.
     model="gpt-4o-mini"
 )
 
-trace.finish(final_output = final_answer)
+trace.finish(final_output=final_answer)
 
 send_trace_to_backend(trace)
